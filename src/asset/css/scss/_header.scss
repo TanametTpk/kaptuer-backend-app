@@ -1,0 +1,121 @@
+// responsive header
+.header-container {
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: 0;
+  margin-right: 0;
+  align-items: center;
+  // overflow: hidden;
+  font-size: 20px;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  z-index: 2;
+
+  .line {
+    height: 2px;
+    background-color: black;
+    margin: 3px 7px;
+  }
+
+  .toggler {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem;
+    height: 40px;
+    width: 40px;
+    margin-left: auto;
+    justify-content: center;
+  }
+  .contents {
+    display: none;
+
+    &.active {
+      position: absolute;
+      top: 36px;
+      left: 0;
+      height: 100vh;
+      width: 100%;
+      background-color: $lightPrimaryColorTheme;
+      margin-top: 20px;
+      display: block;
+      .items {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 20px 0px;
+        .item {
+          margin: 18px 30px;
+          color: white;
+        }
+      }
+      .buttons {
+        display: flex;
+        margin: 0px 30px;
+        button {
+          margin: 0px 12px;
+          &:first-child {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+
+    &.desktop {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-left: auto;
+      .items {
+        flex: 3;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      .buttons {
+        flex: 2;
+        width: 10%;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .header-container {
+    height: 112px;
+    padding-left: 32px;
+    padding-right: 32px;
+    display: flex;
+    .toggler {
+      display: none;
+    }
+    .items {
+      display: block;
+      margin-left: auto;
+      .item {
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+    .buttons {
+      display: flex;
+
+      button {
+        margin-left: 12px;
+        &.link {
+          width: 120px;
+        }
+      }
+    }
+    &.scroll {
+      background-color: white;
+      box-shadow: 0 1px 3px 0 rgba(21, 27, 38, 0.15);
+      transition: all 0.2s ease-in-out;
+    }
+  }
+}

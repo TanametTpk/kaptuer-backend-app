@@ -1,0 +1,19 @@
+$theme-colors: (
+  "primary": #3fbf9a,
+  "danger": #ff4136,
+  "facebook": #3b5998,
+);
+
+div.dropdown-menu {
+  left: unset;
+}
+
+.button-add-application {
+  width: 300px;
+  height: 250px;
+  background-color: white;
+  border: unset;
+  border-radius: 3.14px;
+}
+
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";

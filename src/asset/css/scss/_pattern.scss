@@ -1,0 +1,38 @@
+.pattern1 {
+  img {
+    position: absolute;
+    left: 51%;
+    right: -15.6%;
+    top: -12.82%;
+    bottom: 92.3%;
+    z-index: 1;
+  }
+}
+
+.pattern2 {
+  img {
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 150%;
+    bottom: 0%;
+    z-index: 1;
+  }
+}
+
+.pattern3 {
+  img {
+    position: absolute;
+    right: 0%;
+    top: 345%;
+    z-index: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .pattern1,
+  .pattern2,
+  .pattern3 {
+    display: none;
+  }
+}

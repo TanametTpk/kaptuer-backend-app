@@ -1,0 +1,24 @@
+// .sidebar-container{
+
+//     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
+
+//     background-color: #F1F2F7;
+    
+    
+// }
+
+.sidebar-container {
+    background: #ffffff;
+    height: 100%;
+    z-index: 5;
+    overflow: hidden;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
+
+
+    &.shadow {
+
+        box-shadow: 10px 0px 12px -5px rgba(0,0,0,0.41);
+
+    }
+
+}

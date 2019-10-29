@@ -1,0 +1,8 @@
+export { default as pattern1 } from './pattern1.svg'
+export { default as pattern2 } from './pattern2.svg'
+export { default as pattern3 } from './pattern3.svg'
+export { default as people1 } from './people1.svg'
+export { default as people2 } from './people2.svg'
+export { default as people3 } from './people3.svg'
+export { default as search } from './iconSearch.svg'
+export { default as plus } from './plus.svg'
