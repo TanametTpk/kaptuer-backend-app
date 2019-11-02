@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import API from '../../util/api'
-import SeperateHeader from '../../components/SeperateHeader'
-import Layout from '../../components/Layout'
-import Content from '../../components/Content'
-import ProjectContent from './ProjectContent'
-import SchemaContent from './SchemaContent'
-import AttributeContent from './AttributeContent'
+// import SeperateHeader from '../../components/SeperateHeader'
+// import Layout from '../../components/Layout'
+// import Content from '../../components/Content'
+// import ProjectContent from './ProjectContent'
+// import SchemaContent from './SchemaContent'
+// import AttributeContent from './AttributeContent'
 
 import { connect } from 'react-redux'
 import { getBox, deleteBox, createBox } from '../../store/actions/project'
@@ -14,9 +14,10 @@ import { getSchema, deleteSchema, createSchema } from '../../store/actions/schem
 import { getAttribute, deleteAttribute, createAttribute } from '../../store/actions/attribute'
 import { addSchema, generate, createGenerator } from '../../store/actions/generator'
 
-import IconButton from '../../components/IconButton'
-import { MdChevronLeft } from "react-icons/md";
+// import IconButton from '../../components/IconButton'
+// import { MdChevronLeft } from "react-icons/md";
 import BoxControl from './BoxControl'
+import Pass from '../../asset/svg/password.svg'
 
 import { logEvent } from '../../util/analytics/ga'
 
@@ -99,14 +100,19 @@ function BoxManagement(props) {
     let _item = props.attribute.items[index]
     await props.deleteAttribute(_item._id)
   }
-  let data = [{name:"Login system" , description:"standard login system." , img:"https://www.pinclipart.com/picdir/middle/420-4209237_ajb-set-center-to-modify-the-password-svg.png"}]
+  let data = [
+    {name:"Login system" , description:"standard login system." , img:Pass},
+    {name:"Login system" , description:"standard login system." , img:Pass},
+    {name:"Login system" , description:"standard login system." , img:Pass},
+  ]
+
   return (
     <div style={{margin:"20px 20% 0" }}>
 
       <BoxControl title="Channels" data={data} />
 
       <BoxControl title="Boxes" data={data} />
-      
+
     </div>
   )
 }
