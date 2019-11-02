@@ -2,6 +2,8 @@ $theme-colors: (
   "primary": #3fbf9a,
   "danger": #ff4136,
   "facebook": #3b5998,
+  "white": #fff,
+  "madGrey": #838485,
 );
 
 div.dropdown-menu {
@@ -16,6 +18,7 @@ div.dropdown-menu {
   border-radius: 3.14px;
 }
 
+<<<<<<< HEAD
 nav{
 
   border-style: solid;
@@ -25,3 +28,10 @@ nav{
 }
 
 @import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+=======
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+
+body {
+  background: #e5e5e5;
+}
+>>>>>>> feature/re-ui
