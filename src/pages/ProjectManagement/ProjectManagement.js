@@ -9,7 +9,7 @@ import SchemaContent from './SchemaContent'
 import AttributeContent from './AttributeContent'
 
 import { connect } from 'react-redux'
-import { getProject, deleteProject, createProject } from '../../store/actions/project'
+import { getBox, deleteProject, createBox } from '../../store/actions/project'
 import { getSchema, deleteSchema, createSchema } from '../../store/actions/schema'
 import { getAttribute, deleteAttribute, createAttribute } from '../../store/actions/attribute'
 import { addSchema, generate, createGenerator } from '../../store/actions/generator'
@@ -29,13 +29,13 @@ function ProjectManagement(props) {
 
   useEffect(() => {
 
-    const fetchProject = async () => await props.getProject(appId) // TODO - change application id here
+    const fetchProject = async () => await props.getBox(appId) // TODO - change application id here
 
     fetchProject()
 
   }, [])
 
-  const createProject = async (name) => {
+  const createBox = async (name) => {
 
     if (props.project.items.some((proj) => proj.name === name)){
       setProjectNameError(true)
@@ -43,7 +43,7 @@ function ProjectManagement(props) {
       return 
     }
 
-    await props.createProject({ name, application: appId })
+    await props.createBox({ name, application: appId })
 
   }
 
@@ -113,7 +113,7 @@ function ProjectManagement(props) {
 
       <Layout>
 
-        <ProjectContent onGenerate={generateProject} onDelete={deleteProject} selectedProject={selectProject} onSelectProject={onSelectProject} createProject={createProject} projects={props.project.items} />
+        <ProjectContent onGenerate={generateProject} onDelete={deleteProject} selectedProject={selectProject} onSelectProject={onSelectProject} createBox={createBox} projects={props.project.items} />
 
         <Content>
           {
@@ -161,8 +161,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  getProject,
-  createProject, 
+  getBox,
+  createBox, 
   deleteProject,
   getSchema, 
   createSchema, 
