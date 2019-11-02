@@ -12,6 +12,7 @@ import { initGA, logEvent, pageView } from '../../util/analytics/ga'
 import MainLayout from '../../containners/MainLayout'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'antd/dist/antd.css';
 import '../../asset/css/main.css'
 import '../../asset/css/customs.css'
 

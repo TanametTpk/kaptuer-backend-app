@@ -1,17 +1,34 @@
 import React from 'react'
-import {Navbar, FormControl,Button ,Form, Nav} from 'react-bootstrap'
+import {Navbar, Nav} from 'react-bootstrap'
+import { Avatar, Button } from 'antd';
+import Sidebar from "react-sidebar";
+
+const btnColor = {
+    display:"flex" ,
+    justifyContent:"center" ,
+    alignItems:"center",
+    backgroundImage: "linear-gradient(87.74deg, #ED765E 1.63%, #FEA858 96.86%)",
+    boxShadow: "0px 2px 4px rgba(252, 110, 81, 0.14), 0px 4px 5px rgba(252, 110, 81, 0.12), 0px 1px 10px rgba(252, 110, 81, 0.2)",
+    border:"none",
+    marginRight:"25px"
+}
 
 const index = (props) => {
     return (
         <div>
-            <Navbar bg="light" variant="light" >
+            <Sidebar
+                sidebar={<b>Sidebar content</b>}
+                docked={true}
+                styles={{ sidebar: { background: "white" } }}
+            >
+                <Navbar bg="white" variant="light">
+                    <Nav className="mr-auto" />
 
-                <Navbar.Brand href="/"><div style={{color:"#109CF1"}}>Kaptuer</div></Navbar.Brand>
-                <Nav className="mr-auto" />
-
-                <Button variant="outline-primary">Search</Button>
-            </Navbar>
-            {props.children}
+                    <Button style={btnColor} type="primary" shape="circle" icon="plus"/>
+                    <Avatar src="https://cbsnews1.cbsistatic.com/hub/i/2018/11/06/0c1af1b8-155a-458e-b105-78f1e7344bf4/2018-11-06t054310z-1334124005-rc1be15a8050-rtrmadp-3-people-sexiest-man.jpg"/>
+                </Navbar>
+                {props.children}
+            </Sidebar>
         </div>
     )
 }
