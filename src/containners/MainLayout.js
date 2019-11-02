@@ -1,5 +1,5 @@
 import React from 'react'
-import {Navbar, FormControl,Button Form} from 'react-bootstrap'
+import {Navbar, FormControl,Button ,Form} from 'react-bootstrap'
 
 const index = (props) => {
     return (
