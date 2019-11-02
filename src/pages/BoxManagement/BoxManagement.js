@@ -16,22 +16,23 @@ import { addSchema, generate, createGenerator } from '../../store/actions/genera
 
 import IconButton from '../../components/IconButton'
 import { MdChevronLeft } from "react-icons/md";
-import Snackbar from '@material-ui/core/Snackbar';
+import TopicHeader from './TopicHeader'
+import Boxlist from './Boxlist'
 
 import { logEvent } from '../../util/analytics/ga'
 
 function BoxManagement(props) {
   const history = useHistory();
-  const appId = props.history.location.state.application.id
+  const appId = "test" // props.history.location.state.application.id
   const [selectProject, setSelectProject] = useState(null)
   const [selectSchema, setSelectSchema] = useState(null)
   const [isProjectNameError, setProjectNameError] = useState(false)
 
   useEffect(() => {
 
-    const fetchProject = async () => await props.getBox(appId) // TODO - change application id here
+    // const fetchProject = async () => await props.getBox(appId) // TODO - change application id here
 
-    fetchProject()
+    // fetchProject()
 
   }, [])
 
@@ -101,53 +102,12 @@ function BoxManagement(props) {
   }
 
   return (
-    <div style={{ backgroundColor: "#F1F2F7", padding: "12px" }}>
+    <div style={{margin:"20px 20% 0" }}>
 
-      <SeperateHeader>
-        <div style={{display:"flex"}}>
-          <IconButton icon={<MdChevronLeft size={24} fill="black" />} action={() => history.goBack() } />
-          <h2>Your Projects</h2>
-        </div>
-        {/* <RoundButton style={{width:"200px"}}>Generate</RoundButton> */}
-      </SeperateHeader>
+      <TopicHeader title="Channels" />
+      <Boxlist boxes={[{name:"Login system" , description:"standard login system." , img:"https://www.pinclipart.com/picdir/middle/420-4209237_ajb-set-center-to-modify-the-password-svg.png"}]} />
 
-      <Layout>
-
-        <ProjectContent onGenerate={generateProject} onDelete={deleteBox} selectedProject={selectProject} onSelectProject={onSelectProject} createBox={createBox} projects={props.project.items} />
-
-        <Content>
-          {
-
-            selectProject &&
-
-            // when project has been selected
-            (
-              selectSchema ?
-                // -------------------- YES --------------------
-                <AttributeContent setSelectSchema={setSelectSchema} attributes={props.attribute.items} selectedSchema={selectSchema} onDelete={deleteAttribute} onCreate={(attribute) => props.createAttribute({ ...attribute, databaseMeta: selectSchema._id })} />
-                :
-                // -------------------- NO --------------------
-                <SchemaContent onCreate={(name) => props.createSchema({ name, project: selectProject._id })} schemas={props.schema.items} setSelectSchema={onSelectSchema} onDelete={deleteSchema} />
-            )
-
-          }
-
-        </Content>
-      </Layout>
-
-      <Snackbar
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        open={isProjectNameError}
-        autoHideDuration={6000}
-        onClose={()=>setProjectNameError(false)}
-        ContentProps={{
-          'aria-describedby': 'message-id',
-        }}
-        message={<span id="message-id">Project can't have same name in 1 application.</span>}
-      />
+      <TopicHeader title="Boxes" />
 
     </div>
   )
@@ -177,3 +137,19 @@ const mapDispatchToProps = {
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(BoxManagement)
+
+// {
+
+//   selectProject &&
+
+//   // when project has been selected
+//   (
+//     selectSchema ?
+//       // -------------------- YES --------------------
+//       <AttributeContent setSelectSchema={setSelectSchema} attributes={props.attribute.items} selectedSchema={selectSchema} onDelete={deleteAttribute} onCreate={(attribute) => props.createAttribute({ ...attribute, databaseMeta: selectSchema._id })} />
+//       :
+//       // -------------------- NO --------------------
+//       <SchemaContent onCreate={(name) => props.createSchema({ name, project: selectProject._id })} schemas={props.schema.items} setSelectSchema={onSelectSchema} onDelete={deleteSchema} />
+//   )
+
+// }
