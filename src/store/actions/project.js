@@ -4,6 +4,7 @@ import API from '../../util/api'
 export const getBox = (applicationID) => async dispatch => {
 
     let res = await API.app.getBox(applicationID)
+    if(!res) return
 
     dispatch({
         type: GET_PROJECT,

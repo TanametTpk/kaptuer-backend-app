@@ -17,9 +17,9 @@ export const CardItem = ({ style, children }) => {
     )
 }
 
-export const Card = ({ height , style, children }) => {
+export const Card = ({ height , style, children , onClick }) => {
     return(
-        <div className="card-container" style={{height , ...style}}>
+        <div className="card-container" onClick={onClick} style={{height , ...style}}>
             {children}
         </div>
     )

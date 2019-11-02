@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import generator from './generator'
-import project from './project'
+import box from './project'
 import schema from './schema'
 import attribute from './attribute'
 import user from './user'
@@ -9,7 +9,7 @@ import app from './application'
 
 export default combineReducers({
     generator,
-    project,
+    box,
     schema,
     attribute,
     user,
