@@ -1010,6 +1010,10 @@ body {
   width: 100%;
 }
 
+html {
+  background-color: #f6f8f9;
+}
+
 #root {
   background-color: #f6f8f9;
   min-height: 100vh;

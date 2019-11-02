@@ -32,6 +32,10 @@ body {
   width: 100%;
 }
 
+html {
+  background-color: $lightPrimaryColorTheme;
+}
+
 #root {
   background-color: $lightPrimaryColorTheme;
   min-height: 100vh;

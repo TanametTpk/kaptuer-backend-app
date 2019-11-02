@@ -1,10 +1,9 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {Navbar, Nav} from 'react-bootstrap'
-import { Avatar, Button, Badge } from 'antd';
+import { Avatar, Button } from 'antd';
 import Sidebar from "react-sidebar";
-import { MdNotificationsNone } from 'react-icons/md'
 import SideBar from './SideBar'
-// import {Menu, MenuItem, Fade} from '@material-ui/core'
+import Notification from './Notification'
 import { useAnchorElement } from '../../util/hooks'
 import Menu from './Menu'
 
@@ -32,19 +31,16 @@ const MainLayout = ({ user, ...props}) => {
                 styles={{ sidebar: { background: "white", width:"240px" } }}
             >
                 <Navbar bg="white" variant="light">
+                    {/* Nav make button float to the right  */}
                     <Nav className="mr-auto" />
-
                     <Button style={btnColor} type="primary" shape="circle" icon="plus" onClick={addPopOpen} />
-                    <div style={{marginRight: "20px"}}>
-                        <Badge dot >
-                            <MdNotificationsNone size="25px" fill="#C2CFE0" />
-                        </Badge>
-                    </div>
+                    <Notification />
                     <Avatar onClick={userPopOpen} style={{ color: '#f56a00', backgroundColor: '#fde3cf', cursor:"pointer"}} src={user ? user.photo : ""} icon="user" />
                 </Navbar>
                 {props.children}
             </Sidebar>
 
+            {/* add button */}
             <Menu 
                 anchor={addPopOver}
                 close={addPopClose}
@@ -52,6 +48,7 @@ const MainLayout = ({ user, ...props}) => {
                 menus={[{name:"Application"} , {name:"Channel"}, {name:"Box"}]}
             />
 
+            {/* user button */}
             <Menu 
                 anchor={userPopOver}
                 close={userPopClose}
