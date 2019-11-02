@@ -1,12 +1,13 @@
-import { GET_PROJECT , CREATE_PROJECT , DELETE_PROJECT } from '../types'
+import { GET_BOX , CREATE_BOX , DELETE_BOX } from '../types'
 import API from '../../util/api'
 
 export const getBox = (applicationID) => async dispatch => {
 
     let res = await API.app.getBox(applicationID)
+    if(!res) return
 
     dispatch({
-        type: GET_PROJECT,
+        type: GET_BOX,
         payload: res.data
     })
 
@@ -14,13 +15,13 @@ export const getBox = (applicationID) => async dispatch => {
 
 }
 
-export const createBox = (project) => async dispatch => {
+export const createBox = (box) => async dispatch => {
 
-    let res = await API.app.createBox(project)
+    let res = await API.app.createBox(box)
     if (!res) return
 
     dispatch({
-        type: CREATE_PROJECT,
+        type: CREATE_BOX,
         payload: res.data
     })
 
@@ -34,7 +35,7 @@ export const deleteBox = (id) => async dispatch => {
     if (!res) return
 
     dispatch({
-        type: DELETE_PROJECT,
+        type: DELETE_BOX,
         payload: res.data
     })
 
