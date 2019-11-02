@@ -20,7 +20,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 
 import { logEvent } from '../../util/analytics/ga'
 
-function ProjectManagement(props) {
+function BoxManagement(props) {
   const history = useHistory();
   const appId = props.history.location.state.application.id
   const [selectProject, setSelectProject] = useState(null)
@@ -176,4 +176,4 @@ const mapDispatchToProps = {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProjectManagement)
+export default connect(mapStateToProps, mapDispatchToProps)(BoxManagement)

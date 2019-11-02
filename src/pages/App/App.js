@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import { BrowserRouter as Router, Route, Switch, } from "react-router-dom";
 import { connect, Provider } from 'react-redux'
 
-import ProjectManagement from '../ProjectManagement'
+import BoxManagement from '../BoxManagement'
 import ApplicationManagement from '../ApplicationManagement'
 import { Navbar } from '../../containners'
 import store from '../../store'
@@ -41,7 +41,7 @@ function App(props) {
           {/* {!props.user.isLogin || <Navbar isLogin={props.user.isLogin} logout={logout} name={props.user.name}/> } */}
           <Switch>
             <Route path="/" exact component={ApplicationManagement} />
-            <Route path="/projects" component={ProjectManagement} />
+            <Route path="/projects" component={BoxManagement} />
             <Route component={()=><div>error</div>} />
           </Switch>
         </Router>
