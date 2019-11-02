@@ -36,16 +36,14 @@ function App(props) {
 
   return (
     <Provider store={store}>
-      <MainLayout>
         <Router>
-          {/* {!props.user.isLogin || <Navbar isLogin={props.user.isLogin} logout={logout} name={props.user.name}/> } */}
-          <Switch>
-            <Route path="/" exact component={ApplicationManagement} />
-            <Route path="/projects" component={BoxManagement} />
-            <Route component={()=><div>error</div>} />
-          </Switch>
-        </Router>
-      </MainLayout>
+        {/* {!props.user.isLogin || <Navbar isLogin={props.user.isLogin} logout={logout} name={props.user.name}/> } */}
+        <Switch>
+          <Route path="/" exact render={matchProps => <MainLayout><ApplicationManagement {...matchProps} /></MainLayout> } />
+          <Route path="/apps/:appId" render={matchProps => <MainLayout><BoxManagement {...matchProps} /></MainLayout> } />
+          <Route component={()=><div>error</div>} />
+        </Switch>
+      </Router>
     </Provider>
   );
 }
