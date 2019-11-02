@@ -35,19 +35,18 @@ function App(props) {
   // }
 
   return (
-    // <Provider store={store}>
-    //   <Router>
-    //     {!props.user.isLogin || <Navbar isLogin={props.user.isLogin} logout={logout} name={props.user.name}/> }
-    //     <Switch>
-    //       <Route path="/" exact component={ApplicationManagement} />
-    //       <Route path="/projects" component={ProjectManagement} />
-    //       <Route component={()=><div>error</div>} />
-    //     </Switch>
-    //   </Router>
-    // </Provider>
-    <MainLayout>
-      test
-    </MainLayout>
+    <Provider store={store}>
+      <MainLayout>
+        <Router>
+          {/* {!props.user.isLogin || <Navbar isLogin={props.user.isLogin} logout={logout} name={props.user.name}/> } */}
+          <Switch>
+            <Route path="/" exact component={ApplicationManagement} />
+            <Route path="/projects" component={ProjectManagement} />
+            <Route component={()=><div>error</div>} />
+          </Switch>
+        </Router>
+      </MainLayout>
+    </Provider>
   );
 }
 
