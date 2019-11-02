@@ -32,8 +32,8 @@ const getBox = async (applicationId , errorHandler) => {
 
 }
 
-const deleteProject = async (projectId , errorHandler) => {
-    return await axios.delete(APP + `/boxes/${projectId}`).catch(executeHandler(errorHandler))
+const deleteBox = async (boxId , errorHandler) => {
+    return await axios.delete(APP + `/boxes/${boxId}`).catch(executeHandler(errorHandler))
 }
 
 export default {
@@ -42,5 +42,5 @@ export default {
     deleteApplication,
     createBox,
     getBox,
-    deleteProject
+    deleteBox
 }

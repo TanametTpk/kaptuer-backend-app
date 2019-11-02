@@ -28,9 +28,9 @@ export const createBox = (project) => async dispatch => {
 
 }
 
-export const deleteProject = (id) => async dispatch => {
+export const deleteBox = (id) => async dispatch => {
 
-    let res = await API.app.deleteProject(id)
+    let res = await API.app.deleteBox(id)
     if (!res) return
 
     dispatch({

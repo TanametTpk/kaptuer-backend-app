@@ -9,7 +9,7 @@ import SchemaContent from './SchemaContent'
 import AttributeContent from './AttributeContent'
 
 import { connect } from 'react-redux'
-import { getBox, deleteProject, createBox } from '../../store/actions/project'
+import { getBox, deleteBox, createBox } from '../../store/actions/project'
 import { getSchema, deleteSchema, createSchema } from '../../store/actions/schema'
 import { getAttribute, deleteAttribute, createAttribute } from '../../store/actions/attribute'
 import { addSchema, generate, createGenerator } from '../../store/actions/generator'
@@ -87,8 +87,8 @@ function ProjectManagement(props) {
 
   }
 
-  const deleteProject = async (index, item) => {
-    await props.deleteProject(item._id)
+  const deleteBox = async (index, item) => {
+    await props.deleteBox(item._id)
   }
 
   const deleteSchema = async (index, item) => {
@@ -113,7 +113,7 @@ function ProjectManagement(props) {
 
       <Layout>
 
-        <ProjectContent onGenerate={generateProject} onDelete={deleteProject} selectedProject={selectProject} onSelectProject={onSelectProject} createBox={createBox} projects={props.project.items} />
+        <ProjectContent onGenerate={generateProject} onDelete={deleteBox} selectedProject={selectProject} onSelectProject={onSelectProject} createBox={createBox} projects={props.project.items} />
 
         <Content>
           {
@@ -163,7 +163,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   getBox,
   createBox, 
-  deleteProject,
+  deleteBox,
   getSchema, 
   createSchema, 
   deleteSchema, 
