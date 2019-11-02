@@ -6,7 +6,7 @@ import { Container, Row, Col, Modal, Button, Form } from 'react-bootstrap'
 import { logOut } from '../../store/actions/user'
 import { getApplication, createApplication, deleteApplication } from '../../store/actions/application'
 
-function ApplicationManagement(props) {
+function AppManage(props) {
   let { user, app, getApplication } = props
   const history = useHistory()
   const [appName, setAppName] = useState("")
@@ -125,16 +125,18 @@ const DeleteModal = ({showDeleteModal, setDeleteModal, deleteApplication}) => (
         </Modal>
 )
 
-const mapStateToProps = (state) => ({
-  user: state.user,
-  app: state.app
-})
+// const mapStateToProps = (state) => ({
+//   user: state.user,
+//   app: state.app
+// })
 
-const mapDispatchToProps = {
-  logOut,
-  getApplication,
-  createApplication,
-  deleteApplication,
-}
+// const mapDispatchToProps = {
+//   logOut,
+//   getApplication,
+//   createApplication,
+//   deleteApplication,
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ApplicationManagement)
+// export default connect(mapStateToProps, mapDispatchToProps)(ApplicationManagement)
+
+export default AppManage

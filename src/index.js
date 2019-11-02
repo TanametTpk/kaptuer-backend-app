@@ -2,13 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
 import './index.css';
-import { App } from './pages';
+// import { App } from './pages';
+import AppManage from './pages/AppManage'
 import store from './store'
 import * as serviceWorker from './serviceWorker';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './asset/css/customs.css'
 
 ReactDOM.render(
   <Provider store={store}>
-    <App /> 
+    <AppManage /> 
   </Provider>,
   document.getElementById('root')  
 );

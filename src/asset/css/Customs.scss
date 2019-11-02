@@ -2,6 +2,8 @@ $theme-colors: (
   "primary": #3fbf9a,
   "danger": #ff4136,
   "facebook": #3b5998,
+  "white": #fff,
+  "madGrey": #838485,
 );
 
 div.dropdown-menu {
@@ -17,3 +19,7 @@ div.dropdown-menu {
 }
 
 @import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+
+body {
+  background: #e5e5e5;
+}
