@@ -1,4 +1,4 @@
-import { GET_PROJECT, CREATE_PROJECT, DELETE_PROJECT } from '../types'
+import { GET_BOX, CREATE_BOX, DELETE_BOX } from '../types'
 
 const initState = {
     items: [],
@@ -7,21 +7,21 @@ const initState = {
 export default function (state = initState, action) {
 
     switch (action.type) {
-        case CREATE_PROJECT:
+        case CREATE_BOX:
 
             return {
                 ...state,
                 items: [action.payload, ...state.items]
             }
 
-        case GET_PROJECT:
+        case GET_BOX:
 
             return {
                 ...state,
                 items: action.payload,
             }
 
-        case DELETE_PROJECT:
+        case DELETE_BOX:
 
             return {
                 ...state,

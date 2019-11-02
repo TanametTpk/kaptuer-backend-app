@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 
 import { connect } from 'react-redux'
-import { getBox } from '../../store/actions/project'
+import { getBox } from '../../store/actions/box'
 import BoxControl from './BoxControl'
 
 function BoxManagement(props) {

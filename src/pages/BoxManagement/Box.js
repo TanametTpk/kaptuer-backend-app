@@ -5,7 +5,7 @@ import Menu from '../../containners/MainLayout/Menu'
 import {useAnchorElement} from '../../util/hooks'
 import LoginSystemIcon from '../../asset/svg/password.svg'
 import { connect } from 'react-redux'
-import { deleteBox } from '../../store/actions/project'
+import { deleteBox } from '../../store/actions/box'
 import { generate } from '../../store/actions/generator'
 import { useHistory } from 'react-router-dom'
 
