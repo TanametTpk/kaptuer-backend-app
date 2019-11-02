@@ -16,8 +16,7 @@ import { addSchema, generate, createGenerator } from '../../store/actions/genera
 
 import IconButton from '../../components/IconButton'
 import { MdChevronLeft } from "react-icons/md";
-import TopicHeader from './TopicHeader'
-import Boxlist from './Boxlist'
+import BoxControl from './BoxControl'
 
 import { logEvent } from '../../util/analytics/ga'
 
@@ -100,15 +99,14 @@ function BoxManagement(props) {
     let _item = props.attribute.items[index]
     await props.deleteAttribute(_item._id)
   }
-
+  let data = [{name:"Login system" , description:"standard login system." , img:"https://www.pinclipart.com/picdir/middle/420-4209237_ajb-set-center-to-modify-the-password-svg.png"}]
   return (
     <div style={{margin:"20px 20% 0" }}>
 
-      <TopicHeader title="Channels" />
-      <Boxlist boxes={[{name:"Login system" , description:"standard login system." , img:"https://www.pinclipart.com/picdir/middle/420-4209237_ajb-set-center-to-modify-the-password-svg.png"}]} />
+      <BoxControl title="Channels" data={data} />
 
-      <TopicHeader title="Boxes" />
-
+      <BoxControl title="Boxes" data={data} />
+      
     </div>
   )
 }
