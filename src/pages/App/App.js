@@ -9,9 +9,10 @@ import store from '../../store'
 import { logOut } from '../../store/actions/user'
 import Loader from '../../components/Loader'
 import { initGA, logEvent, pageView } from '../../util/analytics/ga'
-import MainLayout from '../../containners/MainLayout'
+import MainLayout from '../../containners/MainLayout/index'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'antd/dist/antd.css';
 import '../../asset/css/main.css'
 import '../../asset/css/customs.css'
 
