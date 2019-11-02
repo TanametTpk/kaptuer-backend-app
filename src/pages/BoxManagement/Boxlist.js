@@ -1,7 +1,7 @@
 import React from 'react'
 import Box from './Box'
 
-const Boxlist = ({boxes}) => {
+const Boxlist = ({boxes, onMore}) => {
 
     let colorList = [
         "#4FC1E9",
@@ -12,7 +12,7 @@ const Boxlist = ({boxes}) => {
 
     return (
         <div style={{display:"grid", gridTemplateColumns:"repeat(auto-fill, minmax(350px, 1fr))" , gap:"20px 50px", margin:"24px 0"}}>
-            {boxes && boxes.map((box, index) => <Box img={box.img} title={box.name} description={box.description} imgColor={colorList[index%colorList.length]} />)}
+            {boxes && boxes.map((box, index) => <Box onMore={onMore} img={box.img} title={box.name} description={box.description} imgColor={colorList[index%colorList.length]} />)}
         </div>
     )
 }

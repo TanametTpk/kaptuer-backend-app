@@ -1,7 +1,7 @@
 import React from 'react'
 import {Menu, MenuItem, Fade} from '@material-ui/core'
 
-const PopupManu = ({anchor, close, onClick, menus}) => {
+const PopupManu = ({anchor, close, onClick, menus , vertical, horizontal}) => {
 
     const onClose = (value) => {
 
@@ -22,8 +22,8 @@ const PopupManu = ({anchor, close, onClick, menus}) => {
                 horizontal: 'center',
             }}
             transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: vertical || 'top',
+                horizontal: horizontal || 'right',
             }}
             style={{marginTop:"30px"}}
         >

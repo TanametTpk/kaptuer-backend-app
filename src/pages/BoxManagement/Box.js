@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {Card} from '../../components/Card'
 import {MdMoreVert} from 'react-icons/md'
 
-const Box = ({img, title, description, imgColor}) => {
+const Box = ({img, title, description, imgColor, onMore}) => {
 
     const [ isMoreHover, setMoreHover ] = useState(false)
 
@@ -20,6 +20,7 @@ const Box = ({img, title, description, imgColor}) => {
                     style={{position:"absolute", top:"12px" , right:"12px", cursor:"pointer"}}
                     onMouseOut={()=>setMoreHover(false)}
                     onMouseOver={()=>setMoreHover(true)}
+                    onClick={onMore}
                 />
             </div>
         </Card>
