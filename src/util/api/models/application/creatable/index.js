@@ -1,11 +1,7 @@
 import Application from './application'
-import Project from './project'
+import Box from './box'
 
 export default {
     Application,
-    Project
+    Box
 }
-
-/*
-    use this for create Api only
-*/

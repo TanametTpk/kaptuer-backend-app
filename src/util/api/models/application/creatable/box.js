@@ -1,4 +1,4 @@
-const Project = ( name , applicationId) => {
+const Box = ( name , applicationId) => {
 
     return {
         name,
@@ -7,4 +7,4 @@ const Project = ( name , applicationId) => {
 
 }
 
-export default Project
+export default Box
