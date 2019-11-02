@@ -17,9 +17,7 @@ import { addSchema, generate, createGenerator } from '../../store/actions/genera
 // import IconButton from '../../components/IconButton'
 // import { MdChevronLeft } from "react-icons/md";
 import BoxControl from './BoxControl'
-import Menu from '../../containners/MainLayout/Menu'
 import Pass from '../../asset/svg/password.svg'
-import {useAnchorElement} from '../../util/hooks'
 
 import { logEvent } from '../../util/analytics/ga'
 
@@ -29,7 +27,6 @@ function BoxManagement(props) {
   const [selectProject, setSelectProject] = useState(null)
   const [selectSchema, setSelectSchema] = useState(null)
   const [isProjectNameError, setProjectNameError] = useState(false)
-  const [ anchor, open, close ] = useAnchorElement()
 
   useEffect(() => {
 
@@ -103,25 +100,19 @@ function BoxManagement(props) {
     let _item = props.attribute.items[index]
     await props.deleteAttribute(_item._id)
   }
+
   let data = [
-    {name:"Login system" , description:"standard login system." , img:Pass},
-    {name:"Login system" , description:"standard login system." , img:Pass},
-    {name:"Login system" , description:"standard login system." , img:Pass},
+    {_id:"1",name:"Login system" , description:"standard login system." , img:Pass},
+    {_id:"2",name:"Login system" , description:"standard login system." , img:Pass},
+    {_id:"3",name:"Login system" , description:"standard login system." , img:Pass},
   ]
 
   return (
     <div style={{margin:"20px 20% 0" }}>
 
-      <BoxControl title="Channels" data={data} onMore={open} />
+      <BoxControl title="Channels" data={data} />
 
-      <BoxControl title="Boxes" data={data} onMore={open} />
-
-      <Menu
-        anchor={anchor}
-        close={close}
-        onClick={(e)=>console.log(e)}
-        menus={[{name:"Generate"}]}
-      />
+      <BoxControl title="Boxes" data={data} />
 
     </div>
   )

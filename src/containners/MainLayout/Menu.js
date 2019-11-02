@@ -1,5 +1,5 @@
 import React from 'react'
-import {Menu, MenuItem, Fade} from '@material-ui/core'
+import {Menu, MenuItem, Fade, Divider} from '@material-ui/core'
 
 const PopupManu = ({anchor, close, onClick, menus , vertical, horizontal}) => {
 
@@ -27,7 +27,7 @@ const PopupManu = ({anchor, close, onClick, menus , vertical, horizontal}) => {
             }}
             style={{marginTop:"30px"}}
         >
-            { menus && menus.map((menu, index) => <MenuItem key={index} onClick={() => onClose(menu.name)}>{menu.name}</MenuItem>) }
+            { menus && menus.map((menu, index) => menu.divider ?  <Divider /> : <MenuItem key={index} onClick={() => onClose(menu.name)}>{menu.name}</MenuItem>) }
         </Menu>
     )
 }
