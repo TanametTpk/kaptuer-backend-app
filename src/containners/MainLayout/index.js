@@ -4,7 +4,9 @@ import { Avatar, Button, Badge } from 'antd';
 import Sidebar from "react-sidebar";
 import { MdNotificationsNone } from 'react-icons/md'
 import SideBar from './SideBar'
-import {Menu, MenuItem, Fade} from '@material-ui/core'
+// import {Menu, MenuItem, Fade} from '@material-ui/core'
+import { useAnchorElement } from '../../util/hooks'
+import Menu from './Menu'
 
 const btnColor = {
     display:"flex" ,
@@ -18,53 +20,44 @@ const btnColor = {
 
 const MainLayout = ({ user, ...props}) => {
 
-    const [anchorEl, setAnchorEl] = useState(null);
-    const [anchorEl2, setAnchorEl2] = useState(null);
-    const open = Boolean(anchorEl2);
-    const id = open ? 'simple-popover' : undefined;
+    const [addPopOver, addPopOpen, addPopClose] = useAnchorElement();
+    const [userPopOver, userPopOpen, userPopClose] = useAnchorElement();
 
     return (
         <div>
             <Sidebar
                 sidebar={<SideBar />}
                 docked={true}
+                transitions={false}
                 styles={{ sidebar: { background: "white", width:"240px" } }}
             >
                 <Navbar bg="white" variant="light">
                     <Nav className="mr-auto" />
 
-                    <Button style={btnColor} type="primary" shape="circle" icon="plus" onClick={(e) => setAnchorEl(e.currentTarget)} />
-                    {/* <div style={{marginRight: "20px"}}>
+                    <Button style={btnColor} type="primary" shape="circle" icon="plus" onClick={addPopOpen} />
+                    <div style={{marginRight: "20px"}}>
                         <Badge dot >
-                            <MdNotificationsNone size="25px" fill="#C2CFE0" onClick={(e) => {setAnchorEl2(e.currentTarget)}} />
+                            <MdNotificationsNone size="25px" fill="#C2CFE0" />
                         </Badge>
-                    </div> */}
-                    <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf'}} src={user ? user.photo : ""} icon="user" />
+                    </div>
+                    <Avatar onClick={userPopOpen} style={{ color: '#f56a00', backgroundColor: '#fde3cf', cursor:"pointer"}} src={user ? user.photo : ""} icon="user" />
                 </Navbar>
                 {props.children}
             </Sidebar>
 
-            <Menu
-                id="simple-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                TransitionComponent={Fade}
-                onClose={() => setAnchorEl(null)}
-                anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'center',
-                }}
-                transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                }}
-                style={{marginTop:"30px"}}
-            >
-                <MenuItem onClick={() => setAnchorEl(null)}>Application</MenuItem>
-                <MenuItem onClick={() => setAnchorEl(null)}>Channel</MenuItem>
-                <MenuItem onClick={() => setAnchorEl(null)}>Box</MenuItem>
-            </Menu>
+            <Menu 
+                anchor={addPopOver}
+                close={addPopClose}
+                onClick={(e) => console.log(e)}
+                menus={[{name:"Application"} , {name:"Channel"}, {name:"Box"}]}
+            />
+
+            <Menu 
+                anchor={userPopOver}
+                close={userPopClose}
+                onClick={(e) => console.log(e)}
+                menus={[{name:"Logout"}]}
+            />
 
         </div>
     )
