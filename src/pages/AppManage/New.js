@@ -11,16 +11,16 @@ const CardTitle = styled(Card.Title)`
 `;
 
 let appList = [
-  "ชิม ช็อป ใช้",
-  "Digit",
-  "Rovou",
-  "Finder",
-  "Techip",
-  "Goalise",
-  "Digit",
-  "Rovou",
-  "Finder",
-  "Techip",
+  // "ชิม ช็อป ใช้",
+  // "Digit",
+  // "Rovou",
+  // "Finder",
+  // "Techip",
+  // "Goalise",
+  // "Digit",
+  // "Rovou",
+  // "Finder",
+  // "Techip",
 ]
 
 function AppManage(props) {
@@ -36,16 +36,20 @@ function AppManage(props) {
   }
 
   return (
-    <Card className="mt-5 mx-5 shadow">
+    <Card className="mt-5 mx-5 pb-5 shadow">
       <CardTitle>Applications</CardTitle>
       <Card.Body className="mx-5 px-5">
-        <EmptyApp />
-        <Row>
-          {
-            appList.map((value, index) => <AppThumnail onClick={goToApp} name={value} index={index} key={index} />)
-          }
-          <NewApp onClick={gotoCreateNewApp} />
-        </Row>
+      {
+        appList.length > 0 ? 
+          <Row>
+            {
+              appList.map((value, index) => <AppThumnail onClick={goToApp} name={value} index={index} key={index} />)
+            }
+            <NewApp onClick={gotoCreateNewApp} />
+          </Row>
+        :
+          <EmptyApp />
+      }
       </Card.Body>
     </Card>
   )
