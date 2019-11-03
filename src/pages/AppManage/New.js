@@ -48,7 +48,7 @@ function AppManage(props) {
             <NewApp onClick={gotoCreateNewApp} />
           </Row>
         :
-          <EmptyApp />
+          <EmptyApp onClick={gotoCreateNewApp} />
       }
       </Card.Body>
     </Card>
