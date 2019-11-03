@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import {MdMoreVert} from 'react-icons/md'
 import {useAnchorElement} from '../../../util/hooks'
 import Menu from '../../../containners/MainLayout/Menu'
+import {Startup , Sales, Projects, Other} from '../../../asset/svg'
 
 const themeColor = [
   "#ED5565",
@@ -57,10 +58,11 @@ const Container = styled.div`
 
 `
 
-const AppThumnail = ({index=0, name, onClick}) => {
+const AppThumnail = ({index=0, name, onClick , category}) => {
 
   const [ isMoreHover, setMoreHover ] = useState(false)
   const [ anchor, open, close ] = useAnchorElement()
+  let icons = Other
 
   const popupHandler = (action) => {
 
@@ -68,11 +70,18 @@ const AppThumnail = ({index=0, name, onClick}) => {
 
   }
 
+  const getImage = () => {
+    if (category === "Startup") icons = Startup
+    if (category === "Projects") icons = Projects
+    if (category === "Sales") icons = Sales
+    return icons
+  }
+
   return (
     <Container>
       <App onClick={() => {onClick("set id here")}}>
         <Thumnail variant={themeColor[index % themeColor.length]} className="shadow-sm">
-          <img src={"https://picsum.photos/80/80"} alt={name}/>
+          <img src={getImage()} style={{height:"60%",width:"60%"}} alt={name}/>
         </Thumnail>
         <Detail>
           {name}
