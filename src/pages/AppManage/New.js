@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Card, Row } from 'react-bootstrap'
 import AppThumnail from './components/appThumnail'
 import NewApp from './components/newApp'
+import EmptyApp from './components/EmptyApp'
 import { useHistory } from 'react-router-dom'
 
 const CardTitle = styled(Card.Title)`
@@ -38,6 +39,7 @@ function AppManage(props) {
     <Card className="mt-5 mx-5 shadow">
       <CardTitle>Applications</CardTitle>
       <Card.Body className="mx-5 px-5">
+        <EmptyApp />
         <Row>
           {
             appList.map((value, index) => <AppThumnail onClick={goToApp} name={value} index={index} key={index} />)
