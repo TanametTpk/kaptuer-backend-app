@@ -1,7 +1,7 @@
 import React from 'react'
 import Form from './components/Form'
 
-const SetAppName = ({onClick}) => {
+const SetAppName = ({onNext , onBack}) => {
     
     return (
         <div>
@@ -9,7 +9,7 @@ const SetAppName = ({onClick}) => {
                 What is your <br/>
                 application name?
             </h1>
-            <Form />
+            <Form onNext={onNext} onBack={onBack} />
         </div>
     )
 }

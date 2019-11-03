@@ -8,14 +8,14 @@ let data = [
     {name:"Other" , type:"Other"},
 ]
 
-const CreateApp = () => {
+const CreateApp = ({onNext}) => {
     return (
         <div>
             <h1 style={{fontWeight:"bold" , fontSize:"60px", textAlign:"center", margin:"5% 0"}}>
                 Which one can describe <br/>
                 your application ?
             </h1>
-            <CategoryList categories={data} />
+            <CategoryList categories={data} onClick={onNext} />
         </div>
     )
 }

@@ -8,11 +8,11 @@ const Container = styled.div`
     flex-wrap: wrap;
 `
 
-const CategoryList = ({categories}) => {
+const CategoryList = ({categories , onClick}) => {
     return (
         <Container >
             {categories.map((category, index) =>
-                <Category category={category} key={index} index={index} />
+                <Category category={category} key={index} index={index} onClick={onClick} />
             )}
         </Container>
     )

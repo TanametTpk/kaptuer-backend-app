@@ -74,8 +74,12 @@ const Category = ({category, index=0 , onClick}) => {
         return icons
     }
 
+    const sendType = () => {
+      onClick({type: category.type})
+    }
+
     return (
-        <Container>
+        <Container onClick={sendType}>
             <App >
                 <Thumnail variant={themeColor[index % themeColor.length]} className="shadow-lg">
                     <img src={getImage()} style={{height:"60%",width:"60%" , flex:"1"}} alt={category.name}/>
