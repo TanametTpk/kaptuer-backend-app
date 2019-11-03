@@ -9,7 +9,7 @@ const Container = styled.div`
     height:100vh;
 
     .content {
-        margin:5% 10% 10%;
+        padding:5% 10% 5%;
     }
 
 `

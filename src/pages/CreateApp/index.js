@@ -1,1 +1,1 @@
-export { default } from './CreateApp'
+export { default } from './SetAppName'
