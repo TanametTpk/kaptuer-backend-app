@@ -22,7 +22,7 @@ const SideBar = ({onClick}) => {
             defaultSelectedKeys={['dashboard']}
             mode="inline"
         >
-            <h2 style={{color:"#109CF1", padding: '1px 24px'}} >kaptuer</h2>
+            <h2 style={{color:"#109CF1", padding: '1px 24px', marginBottom:"8px"}} >kaptuer</h2>
             <Divider />
 
             <Menu.Item key="dashboard"> <MdDashboard size={size} /> Dashboard</Menu.Item>

@@ -1,11 +1,10 @@
 import React, {useEffect} from 'react';
 import { BrowserRouter as Router, Route, Switch, } from "react-router-dom";
-import { connect, Provider } from 'react-redux'
+import { connect } from 'react-redux'
 
 import BoxManagement from '../BoxManagement'
-import ApplicationManagement from '../ApplicationManagement'
+import ApplicationManagement from '../AppManage'
 import { Navbar } from '../../containners'
-import store from '../../store'
 import { logOut } from '../../store/actions/user'
 import Loader from '../../components/Loader'
 import { initGA, logEvent, pageView } from '../../util/analytics/ga'
@@ -35,8 +34,7 @@ function App(props) {
   // }
 
   return (
-    <Provider store={store}>
-        <Router>
+      <Router>
         {/* {!props.user.isLogin || <Navbar isLogin={props.user.isLogin} logout={logout} name={props.user.name}/> } */}
         <Switch>
           <Route path="/" exact render={matchProps => <MainLayout><ApplicationManagement {...matchProps} /></MainLayout> } />
@@ -44,7 +42,6 @@ function App(props) {
           <Route component={()=><div>error</div>} />
         </Switch>
       </Router>
-    </Provider>
   );
 }
 
