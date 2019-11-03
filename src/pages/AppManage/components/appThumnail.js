@@ -1,5 +1,9 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
+import {MdMoreVert} from 'react-icons/md'
+import {useAnchorElement} from '../../../util/hooks'
+import Menu from '../../../containners/MainLayout/Menu'
+import {Startup , Sales, Projects, Other} from '../../../asset/svg'
 
 const themeColor = [
   "#ED5565",
@@ -31,18 +35,77 @@ const App = styled.div`
   display: flex;
   flex-direction: column;
   margin: 1.25rem 2rem;
+  cursor: pointer;,
+  position: relative;
 `;
 
-const AppThumnail = ({index=0, name="ชิม ช็อป ใช้"}) => {
+const Container = styled.div`
+
+  position: relative;
+
+  .moreIcon {
+    display:none;
+  }
+
+  &:hover {
+
+    .moreIcon{
+      display:block;
+
+    }
+
+  }
+
+`
+
+const AppThumnail = ({index=0, name, onClick , category}) => {
+
+  const [ isMoreHover, setMoreHover ] = useState(false)
+  const [ anchor, open, close ] = useAnchorElement()
+  let icons = Other
+
+  const popupHandler = (action) => {
+
+    if (action === "Delete") console.log("Delete");
+
+  }
+
+  const getImage = () => {
+    if (category === "Startup") icons = Startup
+    if (category === "Projects") icons = Projects
+    if (category === "Sales") icons = Sales
+    return icons
+  }
+
   return (
-    <App>
-      <Thumnail variant={themeColor[index]} className="shadow-sm">
-        <img src={"https://picsum.photos/80/80"} alt={name}/>
-      </Thumnail>
-      <Detail>
-        {name}
-      </Detail>
-    </App>
+    <Container>
+      <App onClick={() => {onClick("set id here")}}>
+        <Thumnail variant={themeColor[index % themeColor.length]} className="shadow-sm">
+          <img src={getImage()} style={{height:"60%",width:"60%"}} alt={name}/>
+        </Thumnail>
+        <Detail>
+          {name}
+        </Detail>
+      </App>
+      <MdMoreVert
+          className="moreIcon"
+          size="20px"
+          fill={isMoreHover ? "gray" : "white"}
+          style={{position:"absolute", top:"30px" , right:"40px", cursor:"pointer"}}
+          onMouseOut={()=>setMoreHover(false)}
+          onMouseOver={()=>setMoreHover(true)}
+          onClick={open}
+        />
+        <Menu
+            anchor={anchor}
+            close={close}
+            onClick={popupHandler}
+            menus={[{name:"Delete"}]}
+            vertical="top"
+            horizontal="left"
+        />
+    </Container>
+    
   )
 }
 
