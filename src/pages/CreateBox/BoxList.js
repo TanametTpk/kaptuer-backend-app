@@ -18,26 +18,11 @@ const Container = styled.div`
 
 `
 
-const BoxList = ({boxes}) => {
-
-    let [ selectedMap, setMap ] = useState({})
-
-    const toggleSelect = (box) => {
-        
-        let sm = {...selectedMap}
-        if (sm[box._id]){
-            delete sm[box._id]
-        }else{
-            sm[box._id] = box
-        }
-
-        setMap(sm)
-
-    }
+const BoxList = ({boxes, onSelect, selectedMap}) => {
 
     return (
         <Container>
-            {boxes.map((box) => <Box active={selectedMap[box._id]} onClick={toggleSelect} box={box} />)}
+            {boxes.map((box) => <Box active={selectedMap[box._id]} onClick={onSelect} box={box} />)}
         </Container>
     )
 }

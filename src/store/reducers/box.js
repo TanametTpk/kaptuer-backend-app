@@ -2,6 +2,7 @@ import { GET_BOX, CREATE_BOX, DELETE_BOX } from '../types'
 
 const initState = {
     items: [],
+    templates: []
 }
 
 export default function (state = initState, action) {

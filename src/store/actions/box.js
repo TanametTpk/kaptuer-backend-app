@@ -15,6 +15,20 @@ export const getBox = (applicationID) => async dispatch => {
 
 }
 
+export const getBoxTemplate = () => async dispatch => {
+
+    let res = await API.app.getBox("applicationID")
+    if(!res) return
+
+    dispatch({
+        type: GET_BOX,
+        payload: res.data
+    })
+
+    return res.data
+
+}
+
 export const createBox = (box) => async dispatch => {
 
     let res = await API.app.createBox(box)

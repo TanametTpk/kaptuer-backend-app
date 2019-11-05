@@ -1,8 +1,10 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import BoxList from './BoxList'
 import {Fab} from '@material-ui/core'
 import { MdDone } from 'react-icons/md'
+import { getBoxTemplate } from '../../store/actions/box'
+import { connect } from 'react-redux'
 
 const Container = styled.div`
 
@@ -42,6 +44,30 @@ let boxes = [
 const CreateBox = (props) => {
 
     let [fabHover , setHover] = useState(false)
+    let [ selectedMap, setMap ] = useState({})
+
+    const toggleSelect = (box) => {
+        
+        let sm = {...selectedMap}
+        if (sm[box._id]){
+            delete sm[box._id]
+        }else{
+            sm[box._id] = box
+        }
+
+        setMap(sm)
+
+    }
+
+    const createBoxes = () => {
+
+        if (Object.keys(selectedMap).length < 1){
+            // not have any box
+        }
+
+        // send to server to create boxes
+
+    }
 
     return (
         <Container>
@@ -50,8 +76,16 @@ const CreateBox = (props) => {
             </h1>
             <span className="back-btn" >Box is template system that you can add it fast and easy</span>
             <div className="spacer" />
-            <BoxList boxes={boxes} />
-            <Fab variant={fabHover ? "extended" : undefined} size={fabHover ? "large" : "medium"} onMouseOver={()=>setHover(true)} onMouseOut={()=>setHover(false)} className="fab" aria-label="add">
+            <BoxList selectedMap={selectedMap} onSelect={toggleSelect} boxes={boxes} />
+            <Fab
+                variant={fabHover ? "extended" : undefined}
+                size={fabHover ? "large" : "medium"} 
+                onMouseOver={()=>setHover(true)} 
+                onMouseOut={()=>setHover(false)} 
+                onClick={createBoxes}
+                className="fab" 
+                aria-label="add"
+            >
                 <MdDone size="30px" fill="white" />
                 {fabHover && "Create boxes"}
             </Fab>
@@ -59,4 +93,13 @@ const CreateBox = (props) => {
     )
 }
 
-export default CreateBox
+const mapStateToProps = (state) => ({
+    boxes: state.box.templates
+})
+
+const mapDispatchToProps = {
+    getBoxTemplate
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(CreateBox)
