@@ -6,6 +6,7 @@ import SideBar from './SideBar'
 import Notification from './Notification'
 import { useAnchorElement } from '../../util/hooks'
 import Menu from './Menu'
+import {useHistory} from 'react-router-dom'
 
 const btnColor = {
     display:"flex" ,
@@ -19,8 +20,18 @@ const btnColor = {
 
 const MainLayout = ({ user, ...props}) => {
 
+    let history = useHistory()
     const [addPopOver, addPopOpen, addPopClose] = useAnchorElement();
     const [userPopOver, userPopOpen, userPopClose] = useAnchorElement();
+
+    const onCreate = (action) => {
+
+        if (action === "Application") history("/_new/app")
+        if (action === "Channel") return
+        if (action === "Box") history("/_new/box")
+
+
+    }
 
     return (
         <div>
@@ -44,7 +55,7 @@ const MainLayout = ({ user, ...props}) => {
             <Menu 
                 anchor={addPopOver}
                 close={addPopClose}
-                onClick={(e) => console.log(e)}
+                onClick={onCreate}
                 menus={[{name:"Application"} , {name:"Channel"}, {name:"Box"}]}
             />
 
