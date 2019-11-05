@@ -26,10 +26,9 @@ const MainLayout = ({ user, ...props}) => {
 
     const onCreate = (action) => {
 
-        if (action === "Application") history("/_new/app")
+        if (action === "Application") history.push("/_new/app")
         if (action === "Channel") return
-        if (action === "Box") history("/_new/box")
-
+        if (action === "Box") history.push("/_new/box")
 
     }
 
