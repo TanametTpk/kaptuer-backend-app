@@ -4,7 +4,9 @@ import BoxList from './BoxList'
 import {Fab} from '@material-ui/core'
 import { MdDone } from 'react-icons/md'
 import { getBoxTemplate, createBoxes } from '../../store/actions/box'
+import Loader from '../../components/Loader'
 import { connect } from 'react-redux'
+import {useHistory} from 'react-router-dom'
 
 const Container = styled.div`
 
@@ -35,16 +37,17 @@ const Container = styled.div`
 
 `
 
-let boxes = [
-    {_id:1 , name:"Login system"},
-    {_id:2 , name:"API system"},
-    {_id:3 , name:"Email notification"}
-]
-
 const CreateBox = (props) => {
 
     let [fabHover , setHover] = useState(false)
     let [ selectedMap, setMap ] = useState({})
+    let history = useHistory()
+
+    useEffect(()=> {
+
+        props.getBoxTemplate()
+
+    }, [])
 
     const toggleSelect = (box) => {
         
@@ -68,7 +71,11 @@ const CreateBox = (props) => {
         }
 
         // send to server to create boxes
-        
+        props.createBoxes(Object.values(selectedMap), "APPLICATION_ID_HERE").then(() => {
+            history.push("/")
+        })
+
+        return <Loader />
 
     }
 
@@ -79,7 +86,7 @@ const CreateBox = (props) => {
             </h1>
             <span className="back-btn" >Box is template system that you can add it fast and easy</span>
             <div className="spacer" />
-            <BoxList selectedMap={selectedMap} onSelect={toggleSelect} boxes={boxes} />
+            <BoxList selectedMap={selectedMap} onSelect={toggleSelect} boxes={props.boxes} />
             <Fab
                 variant={fabHover ? "extended" : undefined}
                 size={fabHover ? "large" : "medium"} 
