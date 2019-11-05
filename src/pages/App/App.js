@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import BoxManagement from '../BoxManagement'
 import ApplicationManagement from '../AppManage'
 import CreateApp from '../CreateApp'
+import CreateBox from '../CreateBox'
 import { Navbar } from '../../containners'
 import { logOut } from '../../store/actions/user'
 import Loader from '../../components/Loader'
@@ -41,6 +42,7 @@ function App(props) {
         <Switch>
           <Route path="/" exact render={matchProps => <MainLayout><ApplicationManagement {...matchProps} /></MainLayout> } />
           <Route path="/_new/app" exact render={matchProps => <FormLayout><CreateApp {...matchProps} /></FormLayout> } />
+          <Route path="/_new/box" exact render={matchProps => <FormLayout><CreateBox {...matchProps} /></FormLayout> } />
           <Route path="/apps/:appId" render={matchProps => <MainLayout><BoxManagement {...matchProps} /></MainLayout> } />
           <Route component={()=><div>error</div>} />
         </Switch>
