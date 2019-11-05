@@ -26,9 +26,21 @@ const createBox = async ( payload , errorHandler ) => {
 
 }
 
+const createBoxes = async ( payload , errorHandler ) => {
+
+    return await axios.post(APP + "/boxes/clone" , payload).catch(executeHandler(errorHandler))
+
+}
+
 const getBox = async (applicationId , errorHandler) => {
 
     return await axios.get(APP + `/boxes?application=${applicationId}`).catch(executeHandler(errorHandler))
+
+}
+
+const getBoxTemplate = async (errorHandler) => {
+
+    return await axios.get(APP + `/boxes?type=template`).catch(executeHandler(errorHandler))
 
 }
 
@@ -42,5 +54,7 @@ export default {
     deleteApplication,
     createBox,
     getBox,
-    deleteBox
+    deleteBox,
+    createBoxes,
+    getBoxTemplate
 }

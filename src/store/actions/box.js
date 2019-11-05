@@ -17,7 +17,7 @@ export const getBox = (applicationID) => async dispatch => {
 
 export const getBoxTemplate = () => async dispatch => {
 
-    let res = await API.app.getBox("applicationID")
+    let res = await API.app.getBoxTemplate()
     if(!res) return
 
     dispatch({
@@ -37,6 +37,20 @@ export const createBox = (box) => async dispatch => {
     dispatch({
         type: CREATE_BOX,
         payload: res.data
+    })
+
+    return res.data
+
+}
+
+export const createBoxes = (boxes) => async dispatch => {
+
+    let res = await API.app.createBoxes(boxes)
+    if (!res) return
+
+    dispatch({
+        // type: CREATE_BOX,
+        // payload: res.data
     })
 
     return res.data

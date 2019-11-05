@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import BoxList from './BoxList'
 import {Fab} from '@material-ui/core'
 import { MdDone } from 'react-icons/md'
-import { getBoxTemplate } from '../../store/actions/box'
+import { getBoxTemplate, createBoxes } from '../../store/actions/box'
 import { connect } from 'react-redux'
 
 const Container = styled.div`
@@ -63,9 +63,12 @@ const CreateBox = (props) => {
 
         if (Object.keys(selectedMap).length < 1){
             // not have any box
+
+            return
         }
 
         // send to server to create boxes
+        
 
     }
 
@@ -98,7 +101,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    getBoxTemplate
+    getBoxTemplate,
+    createBoxes
 }
 
 
