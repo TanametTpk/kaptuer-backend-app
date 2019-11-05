@@ -1,6 +1,8 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import BoxList from './BoxList'
+import {Fab} from '@material-ui/core'
+import { MdDone } from 'react-icons/md'
 
 const Container = styled.div`
 
@@ -15,9 +17,31 @@ const Container = styled.div`
         margin:28px 0 0 0;
     }
 
+    .fab{
+        position: fixed;
+        bottom: 40px;
+        right: 40px;
+        outline: none;
+        background: linear-gradient(87.74deg, #ED765E 1.63%, #FEA858 96.86%);
+        box-shadow: 0px 2px 4px rgba(252, 110, 81, 0.14), 0px 4px 5px rgba(252, 110, 81, 0.12), 0px 1px 10px rgba(252, 110, 81, 0.2);
+        color: white;
+        font-weight: bold;
+        transition: all .2s ease-in-out;
+        border-radius: 20em;
+
+    }
+
 `
 
+let boxes = [
+    {_id:1 , name:"Login system"},
+    {_id:2 , name:"API system"},
+    {_id:3 , name:"Email notification"}
+]
+
 const CreateBox = (props) => {
+
+    let [fabHover , setHover] = useState(false)
 
     return (
         <Container>
@@ -26,7 +50,11 @@ const CreateBox = (props) => {
             </h1>
             <span className="back-btn" >Box is template system that you can add it fast and easy</span>
             <div className="spacer" />
-            <BoxList />
+            <BoxList boxes={boxes} />
+            <Fab variant={fabHover ? "extended" : undefined} size={fabHover ? "large" : "medium"} onMouseOver={()=>setHover(true)} onMouseOut={()=>setHover(false)} className="fab" aria-label="add">
+                <MdDone size="30px" fill="white" />
+                {fabHover && "Create boxes"}
+            </Fab>
         </Container>
     )
 }

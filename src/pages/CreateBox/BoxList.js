@@ -1,7 +1,6 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import Box from './Box'
-import { password } from '../../asset/svg'
 
 const Container = styled.div`
 
@@ -20,12 +19,25 @@ const Container = styled.div`
 `
 
 const BoxList = ({boxes}) => {
+
+    let [ selectedMap, setMap ] = useState({})
+
+    const toggleSelect = (box) => {
+        
+        let sm = {...selectedMap}
+        if (sm[box._id]){
+            delete sm[box._id]
+        }else{
+            sm[box._id] = box
+        }
+
+        setMap(sm)
+
+    }
+
     return (
         <Container>
-            <Box box={{img:password, name:"Login system"}} />
-            <Box box={{img:password, name:"Login system"}} />
-            <Box box={{img:password, name:"Login system"}} />
-            {/* {boxes.map((box) => <Box box={box} />)} */}
+            {boxes.map((box) => <Box active={selectedMap[box._id]} onClick={toggleSelect} box={box} />)}
         </Container>
     )
 }
