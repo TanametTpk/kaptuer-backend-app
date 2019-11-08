@@ -8,7 +8,10 @@ const CardMenu = ({onClick}) => {
     }
 
     return (
-        <Card style={{height:"200px"}}>
+        <Card style={{
+            // height:"200px",
+            height:"100px"
+        }}>
             <Menu
                 onClick={clickHandler}
                 style={{color:"#334D6E" , display:"flex", flexDirection:"column", height:"100%"}}
@@ -16,8 +19,8 @@ const CardMenu = ({onClick}) => {
                 mode="inline"
             >
                 <Menu.Item key="usage">Usage</Menu.Item>
-                <Menu.Item key="pat">Pattern</Menu.Item>
-                <Menu.Item key="att">Attributes</Menu.Item>
+                {/* <Menu.Item key="pat">Pattern</Menu.Item>
+                <Menu.Item key="att">Attributes</Menu.Item> */}
 
             </Menu>
         </Card>
