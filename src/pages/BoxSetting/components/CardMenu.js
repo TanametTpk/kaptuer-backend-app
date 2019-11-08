@@ -10,7 +10,9 @@ const CardMenu = ({onClick}) => {
     return (
         <Card style={{
             // height:"200px",
-            height:"100px"
+            height:"100px",
+            position:"sticky",
+            top:"70px"
         }}>
             <Menu
                 onClick={clickHandler}
