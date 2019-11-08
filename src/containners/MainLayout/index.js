@@ -40,7 +40,7 @@ const MainLayout = ({ user, ...props}) => {
                 transitions={false}
                 styles={{ sidebar: { background: "white", width:"240px" } }}
             >
-                <Navbar bg="white" variant="light">
+                <Navbar bg="white" variant="light" sticky="top" >
                     {/* Nav make button float to the right  */}
                     <Nav className="mr-auto" />
                     <Button style={btnColor} type="primary" shape="circle" icon="plus" onClick={addPopOpen} />
