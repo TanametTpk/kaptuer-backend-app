@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+// import { useHistory } from 'react-router-dom'
 
 import { connect } from 'react-redux'
 import { getBox } from '../../store/actions/box'
 import BoxControl from './BoxControl'
 
 function BoxManagement(props) {
-  const history = useHistory();
+  // const history = useHistory();
   const appId = "test" // props.history.location.state.application.id
 
   useEffect(() => {
@@ -15,7 +15,7 @@ function BoxManagement(props) {
 
     fetchProject()
 
-  }, [])
+  })
 
   return (
     <div style={{margin:"20px 20% 0" }}>

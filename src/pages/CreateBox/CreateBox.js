@@ -47,7 +47,7 @@ const CreateBox = (props) => {
 
         props.getBoxTemplate()
 
-    }, [])
+    })
 
     const toggleSelect = (box) => {
         

@@ -16,11 +16,7 @@ let appList = [
   // "Rovou",
   // "Finder",
   // "Techip",
-  // "Goalise",
-  // "Digit",
-  // "Rovou",
-  // "Finder",
-  // "Techip",
+  // "Goalise"
 ]
 
 function AppManage(props) {
