@@ -11,7 +11,7 @@ const Container = styled.div`
 const PlatformList = ({platforms, selected, onClick}) => {
     return (
         <Container>
-            { platforms.map((platform) => <UsagePlatform active={selected === platform.name} onClick={onClick} platform={platform} margin="34px" />) }
+            { platforms.map((platform) => <UsagePlatform active={selected.name === platform.name} onClick={onClick} platform={platform} margin="34px" />) }
         </Container>
     )
 }
