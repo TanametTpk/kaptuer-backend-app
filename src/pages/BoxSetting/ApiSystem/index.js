@@ -19,6 +19,8 @@ const ApiSystem = ({...props}) => {
     const [ selectedSchema, setSchema ] = useState(null)
     let [ schemaModal, openSm, closeSm ] = useModal()
     let [ attModal, openAm, closeAm ] = useModal()
+    let [ attributeName, setAttName ] = useState("")
+    const [validatedAtt, setValidatedAtt] = useState(false);
 
     const selectSchema = (row) => {
 
@@ -29,6 +31,30 @@ const ApiSystem = ({...props}) => {
     const closeSchema = () => {
 
         setSchema(null)
+
+    }
+
+    const noWhiteSpaceName = ({target:{value}}, l) => {
+
+
+        value = value.replace(/[^a-zA-Z0-9]/g, "_")
+        setAttName(value)
+
+    }
+
+    const canUseName = (name) => {
+        return Boolean(name.match(/_*[a-zA-Z0-9]+[a-zA-Z0-9_]*_*/g))
+    }
+
+    const onCreateAtt = () => {
+
+        setValidatedAtt(true)
+        let result = canUseName(attributeName)
+        
+        if (!result){
+            // handleClickOpen()
+            return
+        }
 
     }
 
@@ -87,13 +113,23 @@ const ApiSystem = ({...props}) => {
             <Modal
                 title="Add attribute"
                 visible={attModal}
-                onOk={()=>{}}
+                onOk={onCreateAtt}
                 onCancel={closeAm}
             >
                 <Form>
                     <Form.Group controlId="exampleForm.ControlInput1">
                         <Form.Label>Attribute name</Form.Label>
-                        <Form.Control type="text" placeholder="my attribute" />
+                        <Form.Control 
+                            required
+                            onChange={noWhiteSpaceName}
+                            value={attributeName}
+                            type="text"
+                            placeholder="my attribute"
+                            isInvalid={validatedAtt && !canUseName(attributeName)}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            You can't use this name
+                        </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group controlId="exampleForm.ControlTextarea1">
                         <Form.Label>Description</Form.Label>
