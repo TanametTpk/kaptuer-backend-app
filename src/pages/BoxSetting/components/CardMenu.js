@@ -1,7 +1,7 @@
 import React from 'react'
 import { Menu, Card } from 'antd';
 
-const CardMenu = ({onClick}) => {
+const CardMenu = ({menus, onClick}) => {
 
     const clickHandler = (e) => {
         if (onClick) onClick(e)
@@ -10,20 +10,17 @@ const CardMenu = ({onClick}) => {
     return (
         <Card style={{
             // height:"200px",
-            height:"100px",
+            height:`${menus.length * 62 + 20}px`,
             position:"sticky",
             top:"70px"
         }}>
             <Menu
                 onClick={clickHandler}
                 style={{color:"#334D6E" , display:"flex", flexDirection:"column", height:"100%"}}
-                defaultSelectedKeys={['usage']}
+                defaultSelectedKeys={[menus[0]]}
                 mode="inline"
             >
-                <Menu.Item key="usage">Usage</Menu.Item>
-                {/* <Menu.Item key="pat">Pattern</Menu.Item>
-                <Menu.Item key="att">Attributes</Menu.Item> */}
-
+                {menus.map((menu) => <Menu.Item key={menu}>{menu}</Menu.Item>)}
             </Menu>
         </Card>
     )
