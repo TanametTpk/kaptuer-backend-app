@@ -10,12 +10,6 @@ import Checkbox from '@material-ui/core/Checkbox';
 
 import EnhancedTableHead from './SchemaTableHead'
 import EnhancedTableToolbar from './SchemaTableToolbar'
-import { useHistory } from 'react-router-dom'
-
-const rows = [
-  {_id: "test1" , name:"User", description:"store user infomation and meta data"},
-  {_id: "test2" , name:"Items", description:"store items that user buy with npc"},
-];
 
 const desc = (a, b, orderBy) => {
   if (b[orderBy] < a[orderBy]) {
@@ -69,7 +63,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const SchemaTable = ({ onClick,...props}) => {
+const SchemaTable = ({rows, onClick,...props}) => {
 
     const classes = useStyles();
     const [order, setOrder] = React.useState('asc');

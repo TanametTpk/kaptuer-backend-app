@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import SchemaTable from './components/SchemaTable'
 import AttributeSection from '../components/AttributeSection'
-import { Modal, Button } from 'antd'
+import { Modal, Button, Empty, Card } from 'antd'
 import styled from 'styled-components'
 import {useModal} from '../../../util/hooks'
 import CreateAttForm from './components/CreateAttForm'
@@ -14,7 +14,7 @@ import { useHistory } from 'react-router-dom'
 const MiniHeader = styled.div`
 
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     width: 100%;
 
 `
@@ -24,11 +24,10 @@ const ApiSystem = ({...props}) => {
     const [ selectedSchema, setSchema ] = useState(null)
     let [ schemaModal, openSm, closeSm ] = useModal()
     let [ attModal, openAm, closeAm ] = useModal()
-    const [validatedAtt, setValidatedAtt] = useState(false);
-    const [validatedSm, setValidatedSm] = useState(false);
+    const [validatedAtt, setValidatedAtt] = useState(false)
+    const [validatedSm, setValidatedSm] = useState(false)
     let [ att, setAtt ] = useState({})
     let [sche, setSche] = useState({})
-    const history = useHistory()
 
     useEffect(() => {
 
@@ -100,26 +99,34 @@ const ApiSystem = ({...props}) => {
                 selectedSchema ?
                 <div>
                     <MiniHeader style={{marginBottom:"24px"}}>
-                        <Button 
-                            style={{color:"#334D6E"}}
-                            type="link"
-                            size="large"
-                            onClick={closeSchema}
-                        >
-                            back
-                        </Button>
-                        <Button 
-                            style={{
-                                background:"#109CF1" ,
-                                border:"none" ,
-                                boxShadow:"0px 4px 10px rgba(16, 156, 241, 0.24)"
-                            }}
-                            type="primary"
-                            size="large"
-                            onClick={openAm}
-                        >
-                            Add attributes
-                        </Button>
+
+                        <div style={{display:'flex'}}>
+                            <h2>{selectedSchema.name}</h2>
+                            {/* <Button type="link" icon="edit" /> */}
+                        </div>
+
+                        <div>
+                            <Button 
+                                style={{color:"#334D6E"}}
+                                type="link"
+                                size="large"
+                                onClick={closeSchema}
+                            >
+                                back
+                            </Button>
+                            <Button 
+                                style={{
+                                    background:"#109CF1" ,
+                                    border:"none" ,
+                                    boxShadow:"0px 4px 10px rgba(16, 156, 241, 0.24)"
+                                }}
+                                type="primary"
+                                size="large"
+                                onClick={openAm}
+                            >
+                                Add attributes
+                            </Button>
+                        </div>
                     </MiniHeader>
                     <AttributeSection 
                         onClick={()=>{}}
@@ -129,6 +136,7 @@ const ApiSystem = ({...props}) => {
                 :
                 <div>
                     <MiniHeader>
+                        <div className="fake-item" />
                         <Button style={{
                                 background:"#109CF1" ,
                                 border:"none" ,
@@ -141,7 +149,26 @@ const ApiSystem = ({...props}) => {
                             Add Schema
                         </Button>
                     </MiniHeader>
-                    <SchemaTable onClick={selectSchema} />
+                    {
+                        props.schemas.length > 0 ?
+                        <SchemaTable rows={props.schemas} onClick={selectSchema} />
+                        :
+                        <Card style={{marginTop:"24px"}}>
+                            <Empty
+                                image="https://gw.alipayobjects.com/mdn/miniapp_social/afts/img/A*pevERLJC9v0AAAAAAAAAAABjAQAAAQ/original"
+                                imageStyle={{
+                                    height: 60,
+                                }}
+                                description={
+                                <span>
+                                    Customize <a href="#API">Description</a>
+                                </span>
+                                }
+                            >
+                                <Button onClick={openSm} type="primary">Create Now</Button>
+                            </Empty>
+                        </Card>
+                    }
                 </div>
             }
 
@@ -168,8 +195,8 @@ const ApiSystem = ({...props}) => {
 }
 
 const mapStateToProps = (state) => ({
-    schema: state.schema.items,
-    attribute: state.attribute.items
+    schemas: state.schema.items,
+    attributes: state.attribute.items
 })
 
 const mapDispatchToProps = {
