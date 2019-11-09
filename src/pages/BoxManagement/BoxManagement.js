@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 // import { useHistory } from 'react-router-dom'
 
 import { connect } from 'react-redux'
-import { getBox } from '../../store/actions/box'
+import { getBoxes } from '../../store/actions/box'
 import BoxControl from './BoxControl'
 
 function BoxManagement(props) {
@@ -33,7 +33,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  getBox,
+  getBoxes,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BoxManagement)

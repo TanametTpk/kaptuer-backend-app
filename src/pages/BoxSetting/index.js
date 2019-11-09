@@ -1,9 +1,11 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import CardMenu from './components/CardMenu'
 import LoginSystem from './LoginSystem'
 import ApiSystem from './ApiSystem'
 import AttributeLayout from './Layouts/AttributeLayout'
+import Api from '../../util/api'
+import { useHistory } from 'react-router-dom'
 
 const Container = styled.div`
 
@@ -14,18 +16,62 @@ const Container = styled.div`
 
 `
 
-let menus = [ "Usage", "Attributes" ]
+let loginMenus = [ "Usage", "Attributes" ]
+let apiMenus = ["Schemas"]
 
-const BoxSettingController = (props) => {
-
-    let [ menu, setMenu] = useState(menus[0])
+const LoginBox = ({menu, changeRoute, ...props}) => {
 
     const makeRoute = () => {
 
-        if (menu === "Usage") return <ApiSystem {...props} />
+        if (menu === "Usage" || !menu) return <LoginSystem {...props} />
         if (menu === "Attributes") return <AttributeLayout />
 
     }
+
+    return(
+        <>
+            <CardMenu menus={loginMenus} onClick={changeRoute} />
+            {makeRoute()}
+        </>
+    )
+}
+
+const ApiBox = ({menu, changeRoute, ...props}) => {
+
+    const makeRoute = () => {
+
+        if (menu === "Schemas" || !menu) return <ApiSystem {...props} />
+
+    }
+
+    return(
+        <>
+            <CardMenu menus={apiMenus} onClick={changeRoute} />
+            {makeRoute()}
+        </>
+    )
+}
+
+const BoxSettingController = (props) => {
+
+    let [ menu, setMenu ] = useState(null)
+    let history = useHistory()
+    let [ box, setBox ] = useState({})
+
+    useEffect(() => {
+
+        let boxId = props.match.params.boxId
+        Api.app.getBox(boxId, () => {
+            // history.push("/")
+            setBox({type:"LOGIN"})
+        }).then((targetBox) => {
+
+            if (!targetBox) return
+            setBox(targetBox)
+
+        })
+
+    }, [])
 
     const changeRoute = (value) => {
 
@@ -35,8 +81,14 @@ const BoxSettingController = (props) => {
 
     return (
         <Container>
-            <CardMenu menus={menus} onClick={changeRoute} />
-            {makeRoute()}
+            {
+                box.type && (
+                    box.type === "API" ? 
+                    <ApiBox menu={menu} changeRoute={changeRoute} {...props} />
+                    :
+                    <LoginBox menu={menu} changeRoute={changeRoute} {...props} />
+                )
+            }
         </Container>
     )
 }

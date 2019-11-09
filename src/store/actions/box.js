@@ -1,7 +1,7 @@
 import { GET_BOX , CREATE_BOX , DELETE_BOX } from '../types'
 import API from '../../util/api'
 
-export const getBox = (applicationID) => async dispatch => {
+export const getBoxes = (applicationID) => async dispatch => {
 
     let res = await API.app.getBox(applicationID)
     if(!res) return

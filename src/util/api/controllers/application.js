@@ -32,7 +32,13 @@ const createBoxes = async ( payload , errorHandler ) => {
 
 }
 
-const getBox = async (applicationId , errorHandler) => {
+const getBox = async (boxId , errorHandler) => {
+
+    return await axios.get(APP + `/boxes/${boxId}`).catch(executeHandler(errorHandler))
+
+}
+
+const getBoxes = async (applicationId , errorHandler) => {
 
     return await axios.get(APP + `/boxes?application=${applicationId}`).catch(executeHandler(errorHandler))
 
@@ -54,6 +60,7 @@ export default {
     deleteApplication,
     createBox,
     getBox,
+    getBoxes,
     deleteBox,
     createBoxes,
     getBoxTemplate
