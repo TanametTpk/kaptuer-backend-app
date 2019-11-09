@@ -1,12 +1,15 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import SchemaTable from './components/SchemaTable'
 import AttributeSection from '../components/AttributeSection'
 import { Modal, Button } from 'antd'
-import { Form } from 'react-bootstrap'
 import styled from 'styled-components'
 import {useModal} from '../../../util/hooks'
 import CreateAttForm from './components/CreateAttForm'
 import CreateSchemaForm from './components/CreateSchemaForm'
+import { connect } from 'react-redux'
+import { getSchema, deleteSchema, createSchema } from '../../../store/actions/schema'
+import { getAttribute, deleteAttribute, createAttribute } from '../../../store/actions/attribute'
+import { useHistory } from 'react-router-dom'
 
 const MiniHeader = styled.div`
 
@@ -25,6 +28,14 @@ const ApiSystem = ({...props}) => {
     const [validatedSm, setValidatedSm] = useState(false);
     let [ att, setAtt ] = useState({})
     let [sche, setSche] = useState({})
+    const history = useHistory()
+
+    useEffect(() => {
+
+        let boxId = props.match.params.boxId
+        props.getSchema(boxId)
+
+    }, [])
 
     const selectSchema = (row) => {
 
@@ -58,7 +69,6 @@ const ApiSystem = ({...props}) => {
         let result = canUseName(att.name)
         
         if (!result){
-            // handleClickOpen()
             return
         }
 
@@ -74,7 +84,6 @@ const ApiSystem = ({...props}) => {
         let result = canUseName(sche.name)
         
         if (!result){
-            // handleClickOpen()
             return
         }
 
@@ -158,4 +167,14 @@ const ApiSystem = ({...props}) => {
     )
 }
 
-export default ApiSystem
+const mapStateToProps = (state) => ({
+    schema: state.schema.items,
+    attribute: state.attribute.items
+})
+
+const mapDispatchToProps = {
+    getSchema, deleteSchema, createSchema, getAttribute, deleteAttribute, createAttribute
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ApiSystem)

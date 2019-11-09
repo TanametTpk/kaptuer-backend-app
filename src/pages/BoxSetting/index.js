@@ -22,7 +22,7 @@ const BoxSettingController = (props) => {
 
     const makeRoute = () => {
 
-        if (menu === "Usage") return <ApiSystem />
+        if (menu === "Usage") return <ApiSystem {...props} />
         if (menu === "Attributes") return <AttributeLayout />
 
     }

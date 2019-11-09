@@ -12,7 +12,7 @@ const generate = async (payload, errorHandler) => {
 
 const getDb = async (projectID, errorHandler) => {
 
-    return await axios.get(GEN + `/databaseMeta?project=${projectID}`).catch(executeHandler(errorHandler))
+    return await axios.get(GEN + `/databaseMeta?box=${projectID}`).catch(executeHandler(errorHandler))
 
 }
 
