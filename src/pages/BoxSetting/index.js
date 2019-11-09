@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import styled from 'styled-components'
 import CardMenu from './components/CardMenu'
 import LoginSystem from './LoginSystem'
+import ApiSystem from './ApiSystem'
 import AttributeLayout from './Layouts/AttributeLayout'
 
 const Container = styled.div`
@@ -17,11 +18,11 @@ let menus = [ "Usage", "Attributes" ]
 
 const BoxSettingController = (props) => {
 
-    let [ menu, setMenu] = useState(menus[1])
+    let [ menu, setMenu] = useState(menus[0])
 
     const makeRoute = () => {
 
-        if (menu === "Usage") return <LoginSystem />
+        if (menu === "Usage") return <ApiSystem />
         if (menu === "Attributes") return <AttributeLayout />
 
     }
