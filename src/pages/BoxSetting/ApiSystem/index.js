@@ -5,6 +5,8 @@ import { Modal, Button } from 'antd'
 import { Form } from 'react-bootstrap'
 import styled from 'styled-components'
 import {useModal} from '../../../util/hooks'
+import CreateAttForm from './components/CreateAttForm'
+import CreateSchemaForm from './components/CreateSchemaForm'
 
 const MiniHeader = styled.div`
 
@@ -19,8 +21,10 @@ const ApiSystem = ({...props}) => {
     const [ selectedSchema, setSchema ] = useState(null)
     let [ schemaModal, openSm, closeSm ] = useModal()
     let [ attModal, openAm, closeAm ] = useModal()
-    let [ attributeName, setAttName ] = useState("")
     const [validatedAtt, setValidatedAtt] = useState(false);
+    const [validatedSm, setValidatedSm] = useState(false);
+    let [ att, setAtt ] = useState({})
+    let [sche, setSche] = useState({})
 
     const selectSchema = (row) => {
 
@@ -34,11 +38,13 @@ const ApiSystem = ({...props}) => {
 
     }
 
-    const noWhiteSpaceName = ({target:{value}}, l) => {
+    const noWhiteSpaceName = (value, setMethod) => {
 
-
-        value = value.replace(/[^a-zA-Z0-9]/g, "_")
-        setAttName(value)
+        value = {
+            ...value,
+            name: (value.name || "").replace(/[^a-zA-Z0-9]/g, "_")
+        }
+        setMethod(value)
 
     }
 
@@ -49,12 +55,32 @@ const ApiSystem = ({...props}) => {
     const onCreateAtt = () => {
 
         setValidatedAtt(true)
-        let result = canUseName(attributeName)
+        let result = canUseName(att.name)
         
         if (!result){
             // handleClickOpen()
             return
         }
+
+        setAtt({})
+        setValidatedAtt(false)
+        closeAm()
+
+    }
+
+    const onCreateSchema = () => {
+
+        setValidatedSm(true)
+        let result = canUseName(sche.name)
+        
+        if (!result){
+            // handleClickOpen()
+            return
+        }
+
+        setSche({})
+        setValidatedSm(false)
+        closeSm()
 
     }
 
@@ -116,35 +142,16 @@ const ApiSystem = ({...props}) => {
                 onOk={onCreateAtt}
                 onCancel={closeAm}
             >
-                <Form>
-                    <Form.Group controlId="exampleForm.ControlInput1">
-                        <Form.Label>Attribute name</Form.Label>
-                        <Form.Control 
-                            required
-                            onChange={noWhiteSpaceName}
-                            value={attributeName}
-                            type="text"
-                            placeholder="my attribute"
-                            isInvalid={validatedAtt && !canUseName(attributeName)}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                            You can't use this name
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group controlId="exampleForm.ControlTextarea1">
-                        <Form.Label>Description</Form.Label>
-                        <Form.Control placeholder="What this attribute use for ?" as="textarea" rows="3" />
-                    </Form.Group>
-                </Form>
+                <CreateAttForm onChange={(value)=>noWhiteSpaceName(value, setAtt)} attribute={att} canUseName={canUseName} validated={validatedAtt} />
             </Modal>
 
             <Modal
                 title="Add schema"
                 visible={schemaModal}
-                onOk={()=>{}}
+                onOk={onCreateSchema}
                 onCancel={closeSm}
             >
-                test
+                <CreateSchemaForm onChange={(value)=>noWhiteSpaceName(value, setSche)} schema={sche} canUseName={canUseName} validated={validatedSm} />
             </Modal>
 
         </div>
