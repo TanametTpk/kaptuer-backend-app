@@ -1,4 +1,4 @@
-import { GET_ATTRIBUTE , CREATE_ATTRIBUTE , DELETE_ATTRIBUTE } from '../types'
+import { GET_ATTRIBUTE , CREATE_ATTRIBUTE , DELETE_ATTRIBUTE, UPDATE_ATTRIBUTE } from '../types'
 
 const initState = {
     items: [],
@@ -26,6 +26,19 @@ export default function (state = initState, action) {
             return {
                 ...state,
                 items: state.items.filter(item => item._id !== action.payload._id),
+            }
+
+        case UPDATE_ATTRIBUTE:
+            let currentItems = [action.payload]
+
+            // replace item
+            let updateState = state.items.map(
+                obj => currentItems.find(o => o._id === obj._id) || obj
+            );
+            
+            return {
+                ...state,
+                items:updateState
             }
 
         default:

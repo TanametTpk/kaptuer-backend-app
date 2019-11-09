@@ -8,8 +8,7 @@ import CreateAttForm from './components/CreateAttForm'
 import CreateSchemaForm from './components/CreateSchemaForm'
 import { connect } from 'react-redux'
 import { getSchema, deleteSchema, createSchema } from '../../../store/actions/schema'
-import { getAttribute, deleteAttribute, createAttribute } from '../../../store/actions/attribute'
-import { useHistory } from 'react-router-dom'
+import { getAttribute, deleteAttribute, createAttribute, updateAttribute } from '../../../store/actions/attribute'
 
 const MiniHeader = styled.div`
 
@@ -24,10 +23,12 @@ const ApiSystem = ({...props}) => {
     const [ selectedSchema, setSchema ] = useState(null)
     let [ schemaModal, openSm, closeSm ] = useModal()
     let [ attModal, openAm, closeAm ] = useModal()
+    let [ eattModal, openEAm, closeEAm ] = useModal()
     const [validatedAtt, setValidatedAtt] = useState(false)
     const [validatedSm, setValidatedSm] = useState(false)
     let [ att, setAtt ] = useState({})
     let [sche, setSche] = useState({})
+    let [ eatt, setEAtt ] = useState({})
 
     useEffect(() => {
 
@@ -39,7 +40,13 @@ const ApiSystem = ({...props}) => {
     const selectSchema = (row) => {
 
         setSchema(row)
+        props.getAttribute(row._id)
 
+    }
+
+    const clickAtt = (att) => {
+        setEAtt(att)
+        openEAm()
     }
 
     const closeSchema = () => {
@@ -71,9 +78,36 @@ const ApiSystem = ({...props}) => {
             return
         }
 
-        setAtt({})
-        setValidatedAtt(false)
-        closeAm()
+        props.createAttribute(att).then(() => {
+
+            
+
+        }).finally((e) => {
+            setAtt({})
+            setValidatedAtt(false)
+            closeAm()
+        })
+
+    }
+
+    const onEditAtt = () => {
+
+        setValidatedAtt(true)
+        let result = canUseName(eatt.name)
+        
+        if (!result){
+            return
+        }
+
+        props.updateAttribute(eatt).then(() => {
+
+            
+
+        }).finally(() => {
+            setAtt({})
+            setValidatedAtt(false)
+            closeAm()
+        })
 
     }
 
@@ -86,9 +120,13 @@ const ApiSystem = ({...props}) => {
             return
         }
 
-        setSche({})
-        setValidatedSm(false)
-        closeSm()
+        props.createSchema(sche).then(() => {
+
+        }).finally(() => {
+            setSche({})
+            setValidatedSm(false)
+            closeSm()
+        })
 
     }
 
@@ -129,7 +167,7 @@ const ApiSystem = ({...props}) => {
                         </div>
                     </MiniHeader>
                     <AttributeSection 
-                        onClick={()=>{}}
+                        onClick={clickAtt}
                         attributes={[{_id:"test", name:"fuck", option:"unique"}]}
                     />
                 </div>
@@ -182,6 +220,15 @@ const ApiSystem = ({...props}) => {
             </Modal>
 
             <Modal
+                title="Edit attribute"
+                visible={eattModal}
+                onOk={onEditAtt}
+                onCancel={closeEAm}
+            >
+                <CreateAttForm onChange={(value)=>noWhiteSpaceName(value, setEAtt)} attribute={eatt} canUseName={canUseName} validated={validatedAtt} />
+            </Modal>
+
+            <Modal
                 title="Add schema"
                 visible={schemaModal}
                 onOk={onCreateSchema}
@@ -200,7 +247,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    getSchema, deleteSchema, createSchema, getAttribute, deleteAttribute, createAttribute
+    getSchema, deleteSchema, createSchema, getAttribute, deleteAttribute, createAttribute, updateAttribute
 }
 
 

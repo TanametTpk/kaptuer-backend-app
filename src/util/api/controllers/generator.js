@@ -46,6 +46,12 @@ const deleteAttribute = async (attrubuteID, errorHandler) => {
 
 }
 
+const updateAttribute = async (payload, errorHandler) => {
+
+    return await axios.put(GEN + `/attribute/${payload._id}`, payload).catch(executeHandler(errorHandler))
+
+}
+
 export default {
     generate,
     getDb,
@@ -54,4 +60,5 @@ export default {
     getAttribute,
     createAttribute,
     deleteAttribute,
+    updateAttribute
 }
