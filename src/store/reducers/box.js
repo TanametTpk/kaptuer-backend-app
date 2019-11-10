@@ -2,7 +2,12 @@ import { GET_BOX, CREATE_BOX, DELETE_BOX, GET_BOX_TEMPLATE } from '../types'
 
 const initState = {
     items: [],
-    templates: []
+    templates: [
+        {
+            name:"API system",
+            type:"template"
+        }
+    ]
 }
 
 export default function (state = initState, action) {

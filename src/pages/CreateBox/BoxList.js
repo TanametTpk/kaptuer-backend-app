@@ -22,7 +22,7 @@ const BoxList = ({boxes, onSelect, selectedMap}) => {
 
     return (
         <Container>
-            {boxes.map((box) => <Box active={selectedMap[box._id]} onClick={onSelect} box={box} />)}
+            {boxes.map((box, index) => <Box active={selectedMap[box._id]} key={index} onClick={onSelect} box={box} />)}
         </Container>
     )
 }

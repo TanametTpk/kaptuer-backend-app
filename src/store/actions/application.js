@@ -1,4 +1,4 @@
-import { GET_APPLICATION, CREATE_APPLICATION, DELETE_APPLICATION } from '../types'
+import { GET_APPLICATION, CREATE_APPLICATION, DELETE_APPLICATION, SELECT_APPLICATION } from '../types'
 import API from '../../util/api'
 import creatable from '../../util/api/models/application/creatable'
 
@@ -36,6 +36,15 @@ export const deleteApplication = (appId) => async dispatch => {
   dispatch({
     type: DELETE_APPLICATION,
     payload: res.data
+  })
+
+}
+
+export const selectApplication = (app) => async dispatch => {
+
+  dispatch({
+    type: SELECT_APPLICATION,
+    payload: app
   })
 
 }

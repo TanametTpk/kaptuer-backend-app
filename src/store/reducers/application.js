@@ -1,7 +1,8 @@
-import { GET_APPLICATION, CREATE_APPLICATION, DELETE_APPLICATION } from '../types'
+import { GET_APPLICATION, CREATE_APPLICATION, DELETE_APPLICATION, SELECT_APPLICATION } from '../types'
 
 const initState = {
   items: [],
+  selected: {}
 }
 
 export default function (state = initState, action) {
@@ -22,6 +23,12 @@ export default function (state = initState, action) {
       return {
         ...state,
         items: state.items.filter(item => item._id !== action.payload._id)
+      }
+
+    case SELECT_APPLICATION:
+      return {
+        ...state,
+        selected: action.payload
       }
     default:
       return state

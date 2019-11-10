@@ -45,9 +45,10 @@ const CreateBox = (props) => {
 
     useEffect(()=> {
 
-        props.getBoxTemplate()
+        if (Object.entries(props.app).length < 1) history.push("/")
+        // props.getBoxTemplate()
 
-    })
+    },[])
 
     const toggleSelect = (box) => {
         
@@ -71,7 +72,7 @@ const CreateBox = (props) => {
         }
 
         // send to server to create boxes
-        props.createBoxes(Object.values(selectedMap), "APPLICATION_ID_HERE").then(() => {
+        props.createBoxes(Object.values(selectedMap), props.app._id).then(() => {
             history.push("/")
         })
 
@@ -104,7 +105,8 @@ const CreateBox = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-    boxes: state.box.templates
+    boxes: state.box.templates,
+    app: state.app.selected
 })
 
 const mapDispatchToProps = {

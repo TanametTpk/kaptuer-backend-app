@@ -5,7 +5,7 @@ import AppThumnail from './components/appThumnail'
 import NewApp from './components/newApp'
 import EmptyApp from './components/EmptyApp'
 import { useHistory } from 'react-router-dom'
-import { getApplication, deleteApplication } from '../../store/actions/application'
+import { getApplication, deleteApplication, selectApplication } from '../../store/actions/application'
 import { connect } from 'react-redux'
 
 const CardTitle = styled(Card.Title)`
@@ -31,6 +31,7 @@ function AppManage(props) {
   }
 
   const goToApp = (app) => {
+    props.selectApplication(app)
     history.push(`/apps/${app._id}`)
   }
 
@@ -59,11 +60,11 @@ function AppManage(props) {
 }
 
 const mapStateToProps = (state) => ({
-    apps: state.app.items
+    apps: state.app.items,
 })
 
 const mapDispatchToProps = {
-  getApplication, deleteApplication
+  getApplication, deleteApplication,selectApplication
 }
 
 

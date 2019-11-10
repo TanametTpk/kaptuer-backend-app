@@ -18,6 +18,12 @@ const btnColor = {
     marginRight:"20px"
 }
 
+let menus = [
+    {name:"Application"} ,
+    //  {name:"Channel"},
+    {name:"Box"}
+]
+
 const MainLayout = ({ user, ...props}) => {
 
     let history = useHistory()
@@ -55,7 +61,7 @@ const MainLayout = ({ user, ...props}) => {
                 anchor={addPopOver}
                 close={addPopClose}
                 onClick={onCreate}
-                menus={[{name:"Application"} , {name:"Channel"}, {name:"Box"}]}
+                menus={menus}
             />
 
             {/* user button */}
