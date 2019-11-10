@@ -9,8 +9,8 @@ import CreateBox from '../CreateBox'
 import BoxSetting from '../BoxSetting'
 // import { Navbar } from '../../containners'
 import { logOut } from '../../store/actions/user'
-// import Loader from '../../components/Loader'
-// import { initGA, logEvent, pageView } from '../../util/analytics/ga'
+import Loader from '../../components/Loader'
+import { initGA, logEvent, pageView } from '../../util/analytics/ga'
 import MainLayout from '../../containners/MainLayout/index'
 import FormLayout from '../../containners/FormLayout'
 
@@ -22,15 +22,15 @@ import '../../asset/css/customs.css'
 function App(props) {
 
   useEffect(()=>{
-    // initGA()
-    // pageView()
+    initGA()
+    pageView()
   })
 
-  // if (!props.user.isLogin){
-  //   logEvent("appPage", "not login")
-  //   window.location.href = "https://kaptuer.com";
-  //   return(<Loader />)
-  // }
+  if (!props.user.isLogin){
+    logEvent("appPage", "not login")
+    window.location.href = "https://kaptuer.com";
+    return(<Loader />)
+  }
 
   // const logout = () => {
   //   props.logOut()
