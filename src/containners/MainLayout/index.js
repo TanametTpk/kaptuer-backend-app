@@ -3,7 +3,7 @@ import {Navbar, Nav} from 'react-bootstrap'
 import { Avatar, Button } from 'antd';
 import Sidebar from "react-sidebar";
 import SideBar from './SideBar'
-import Notification from './Notification'
+// import Notification from './Notification'
 import { useAnchorElement } from '../../util/hooks'
 import Menu from './Menu'
 import {useHistory} from 'react-router-dom'
@@ -29,7 +29,9 @@ const MainLayout = ({ user, ...props}) => {
     let history = useHistory()
     const [addPopOver, addPopOpen, addPopClose] = useAnchorElement();
     const [userPopOver, userPopOpen, userPopClose] = useAnchorElement();
-
+    
+    let isInApp = Boolean(props.match && props.match.params.appId)
+    
     const onCreate = (action) => {
 
         if (action === "Application") history.push("/_new/app")
@@ -38,10 +40,14 @@ const MainLayout = ({ user, ...props}) => {
 
     }
 
+    const onSideBarClick = (e) => {
+        if (e.key === "dashboard") history.push("/") 
+    }
+
     return (
         <div>
             <Sidebar
-                sidebar={<SideBar />}
+                sidebar={<SideBar onClick={onSideBarClick} />}
                 docked={true}
                 transitions={false}
                 styles={{ sidebar: { background: "white", width:"240px", zIndex:"501" } }}
@@ -50,7 +56,7 @@ const MainLayout = ({ user, ...props}) => {
                     {/* Nav make button float to the right  */}
                     <Nav className="mr-auto" />
                     <Button style={btnColor} type="primary" shape="circle" icon="plus" onClick={addPopOpen} />
-                    <Notification />
+                    {/* <Notification /> */}
                     <Avatar onClick={userPopOpen} style={{ color: '#f56a00', backgroundColor: '#fde3cf', cursor:"pointer"}} src={user ? user.photo : ""} icon="user" />
                 </Navbar>
                 {props.children}
@@ -61,7 +67,7 @@ const MainLayout = ({ user, ...props}) => {
                 anchor={addPopOver}
                 close={addPopClose}
                 onClick={onCreate}
-                menus={menus}
+                menus={menus.filter((menu) => isInApp ? true : (menu.name !== "Box")) }
             />
 
             {/* user button */}

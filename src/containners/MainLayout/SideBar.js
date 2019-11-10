@@ -26,11 +26,11 @@ const SideBar = ({onClick}) => {
             <Divider />
 
             <Menu.Item key="dashboard"> <MdDashboard size={size} /> Dashboard</Menu.Item>
-            <Menu.Item key="profile"> <AiOutlineUser size={size}  /> Profile</Menu.Item>
-            <Menu.Item key="rf"> <FiMessageSquare size={size} /> Reports & feedbacks</Menu.Item>
+            {/* <Menu.Item key="profile"> <AiOutlineUser size={size}  /> Profile</Menu.Item>
+            <Menu.Item key="rf"> <FiMessageSquare size={size} /> Reports & feedbacks</Menu.Item> */}
 
-            <Divider style={{marginTop:"auto"}} />
-            <Menu.Item key="contact"><MdMailOutline size={size} /> Contact us</Menu.Item>
+            {/* <Divider style={{marginTop:"auto"}} /> */}
+            {/* <Menu.Item key="contact"><MdMailOutline size={size} /> Contact us</Menu.Item> */}
         </Menu>
     )
 }

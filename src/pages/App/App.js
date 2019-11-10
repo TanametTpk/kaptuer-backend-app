@@ -41,10 +41,10 @@ function App(props) {
       <Router>
         {/* {!props.user.isLogin || <Navbar isLogin={props.user.isLogin} logout={logout} name={props.user.name}/> } */}
         <Switch>
-          <Route path="/" exact render={matchProps => <MainLayout><ApplicationManagement {...matchProps} /></MainLayout> } />
+          <Route path="/" exact render={matchProps => <MainLayout ><ApplicationManagement {...matchProps} /></MainLayout> } />
           <Route path="/_new/app" exact render={matchProps => <FormLayout><CreateApp {...matchProps} /></FormLayout> } />
           <Route path="/_new/box" exact render={matchProps => <FormLayout><CreateBox {...matchProps} /></FormLayout> } />
-          <Route path="/apps/:appId" render={matchProps => <MainLayout><BoxManagement {...matchProps} /></MainLayout> } />
+          <Route path="/apps/:appId" render={matchProps => <MainLayout {...matchProps} ><BoxManagement {...matchProps} /></MainLayout> } />
           <Route path="/boxes/:boxId" render={matchProps => <MainLayout><BoxSetting {...matchProps} /></MainLayout> } />
           <Route component={()=><div>error</div>} />
         </Switch>
