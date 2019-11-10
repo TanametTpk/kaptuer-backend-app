@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form } from 'react-bootstrap'
 
-const CreateAttForm = ({onChange, schema={}, canUseName, validated, ...props}) => {
+const CreateSchemaForm = ({onChange, schema={}, canUseName, validated, ...props}) => {
 
     const onChangeSchema= ({target:{value}}, key) => {
 
@@ -11,6 +11,9 @@ const CreateAttForm = ({onChange, schema={}, canUseName, validated, ...props}) =
         })
 
     }
+
+    console.log(schema);
+    
 
     return (
         <Form>
@@ -30,10 +33,10 @@ const CreateAttForm = ({onChange, schema={}, canUseName, validated, ...props}) =
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlTextarea1">
                 <Form.Label>Description</Form.Label>
-                <Form.Control value={schema.description} onChange={(e) => onChangeSchema(e, "description")} placeholder="What is this schema use for ?" as="textarea" rows="3" />
+                <Form.Control value={schema.description || ""} onChange={(e) => onChangeSchema(e, "description")} placeholder="What is this schema use for ?" as="textarea" rows="3" />
             </Form.Group>
         </Form>
     )
 }
 
-export default CreateAttForm
+export default CreateSchemaForm

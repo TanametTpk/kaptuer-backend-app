@@ -62,12 +62,11 @@ const BoxSettingController = (props) => {
 
         let boxId = props.match.params.boxId
         Api.app.getBox(boxId, () => {
-            // history.push("/")
-            setBox({type:"LOGIN"})
+            history.push("/")
         }).then((targetBox) => {
-
+            
             if (!targetBox) return
-            setBox(targetBox)
+            setBox(targetBox.data)
 
         })
 
@@ -83,7 +82,7 @@ const BoxSettingController = (props) => {
         <Container>
             {
                 box.type && (
-                    box.type === "API" ? 
+                    box.type === "api" ? 
                     <ApiBox menu={menu} changeRoute={changeRoute} {...props} />
                     :
                     <LoginBox menu={menu} changeRoute={changeRoute} {...props} />

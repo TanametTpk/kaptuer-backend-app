@@ -63,7 +63,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const SchemaTable = ({rows, onClick,...props}) => {
+const SchemaTable = ({rows, onClick, deleteSchemas, ...props}) => {
 
     const classes = useStyles();
     const [order, setOrder] = React.useState('asc');
@@ -136,8 +136,8 @@ const SchemaTable = ({rows, onClick,...props}) => {
         })
 
         // delete this all objects
-        console.log(deleteTarget);
-        
+        if (deleteSchemas) deleteSchemas(deleteTarget)
+        setSelected([])
 
     }
 
@@ -175,7 +175,7 @@ const SchemaTable = ({rows, onClick,...props}) => {
                     return (
                         <TableRow
                         hover
-                        onClick={event => {if (onClick) onClick(row)} }
+                        onDoubleClick={event => {if (onClick) onClick(row)} }
                         role="checkbox"
                         aria-checked={isItemSelected}
                         tabIndex={-1}

@@ -29,10 +29,10 @@ const ApiSystem = ({...props}) => {
     let [ att, setAtt ] = useState({})
     let [sche, setSche] = useState({})
     let [ eatt, setEAtt ] = useState({})
+    let boxId = props.match.params.boxId
 
     useEffect(() => {
 
-        let boxId = props.match.params.boxId
         props.getSchema(boxId)
 
     }, [])
@@ -120,12 +120,20 @@ const ApiSystem = ({...props}) => {
             return
         }
 
-        props.createSchema(sche).then(() => {
+        props.createSchema({box:boxId ,...sche}).then(() => {
 
         }).finally(() => {
             setSche({})
             setValidatedSm(false)
             closeSm()
+        })
+
+    }
+
+    const deleteSchemas = (schemas) => {
+
+        schemas.map((schema) => {
+            props.deleteSchema(schema._id)
         })
 
     }
@@ -189,7 +197,7 @@ const ApiSystem = ({...props}) => {
                     </MiniHeader>
                     {
                         props.schemas.length > 0 ?
-                        <SchemaTable rows={props.schemas} onClick={selectSchema} />
+                        <SchemaTable deleteSchemas={deleteSchemas} rows={props.schemas} onClick={selectSchema} />
                         :
                         <Card style={{marginTop:"24px"}}>
                             <Empty
