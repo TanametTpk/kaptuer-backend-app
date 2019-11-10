@@ -6,7 +6,7 @@ const GEN = API.CONTROLLER
 
 const generate = async (payload, errorHandler) => {
 
-    return await axios.post(GEN + "/generator/inplace", { projectID: payload._id }).catch(executeHandler(errorHandler))
+    return await axios.post(GEN + "/generator/inplace", { boxID: payload._id }).catch(executeHandler(errorHandler))
 
 }
 

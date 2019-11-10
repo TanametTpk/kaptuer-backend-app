@@ -20,7 +20,11 @@ const Box = ({box:{img, name, description, _id}, imgColor, ...props}) => {
     }
 
     const generate = () => {
-        props.generate({projectID: _id})
+
+        props.generate({_id}).then((data) => {
+            if (!data) return
+            window.open(data.url, '_blank')
+        })
     }
 
     const onDelete = () => {
