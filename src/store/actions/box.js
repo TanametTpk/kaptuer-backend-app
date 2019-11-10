@@ -1,11 +1,11 @@
-import { GET_BOX , CREATE_BOX , DELETE_BOX } from '../types'
+import { GET_BOX , CREATE_BOX , DELETE_BOX, GET_BOX_TEMPLATE } from '../types'
 import API from '../../util/api'
 
 export const getBoxes = (applicationID) => async dispatch => {
 
-    let res = await API.app.getBox(applicationID)
+    let res = await API.app.getBoxes(applicationID)
     if(!res) return
-
+    
     dispatch({
         type: GET_BOX,
         payload: res.data
@@ -21,7 +21,7 @@ export const getBoxTemplate = () => async dispatch => {
     if(!res) return
 
     dispatch({
-        type: GET_BOX,
+        type: GET_BOX_TEMPLATE,
         payload: res.data
     })
 
@@ -49,8 +49,8 @@ export const createBoxes = (boxes , applicationID) => async dispatch => {
     if (!res) return
 
     dispatch({
-        // type: CREATE_BOX,
-        // payload: res.data
+        type: CREATE_BOX,
+        payload: res.data
     })
 
     return res.data

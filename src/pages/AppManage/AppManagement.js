@@ -1,34 +1,41 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
 import { Card, Row } from 'react-bootstrap'
 import AppThumnail from './components/appThumnail'
 import NewApp from './components/newApp'
 import EmptyApp from './components/EmptyApp'
 import { useHistory } from 'react-router-dom'
+import { getApplication, deleteApplication } from '../../store/actions/application'
+import { connect } from 'react-redux'
 
 const CardTitle = styled(Card.Title)`
   padding:2.5rem 0 1rem 2.5rem
 `;
 
-let appList = [
-  // "ชิม ช็อป ใช้",
-  // "Digit",
-  // "Rovou",
-  // "Finder",
-  // "Techip",
-  // "Goalise"
-]
-
 function AppManage(props) {
 
   let history = useHistory()
+
+  useEffect(() => {
+
+    const fetchApp = async () => {
+      await props.getApplication()
+    }
+
+    fetchApp()
+
+  },[])
 
   const gotoCreateNewApp = () => {
     history.push(`/_new/app`)
   }
 
-  const goToApp = (id) => {
-    history.push(`/apps/test`)
+  const goToApp = (app) => {
+    history.push(`/apps/${app._id}`)
+  }
+
+  const deleteApp = (app) => {
+    props.deleteApplication(app._id)
   }
 
   return (
@@ -36,10 +43,10 @@ function AppManage(props) {
       <CardTitle>Applications</CardTitle>
       <Card.Body className="mx-5 px-5">
       {
-        appList.length > 0 ? 
+          props.apps.length > 0 ? 
           <Row>
             {
-              appList.map((value, index) => <AppThumnail onClick={goToApp} name={value} index={index} key={index} />)
+              props.apps.map((value, index) => <AppThumnail app={value} onDelete={deleteApp} onClick={goToApp} index={index} key={index} />)
             }
             <NewApp onClick={gotoCreateNewApp} />
           </Row>
@@ -51,4 +58,13 @@ function AppManage(props) {
   )
 }
 
-export default AppManage
+const mapStateToProps = (state) => ({
+    apps: state.app.items
+})
+
+const mapDispatchToProps = {
+  getApplication, deleteApplication
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppManage)

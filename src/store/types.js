@@ -9,6 +9,7 @@ export const DELETE_APPLICATION = "DELETE_APPLICATION"
 export const GET_BOX = "GET_BOX"
 export const CREATE_BOX = "CREATE_BOX"
 export const DELETE_BOX = "DELETE_BOX"
+export const GET_BOX_TEMPLATE = "GET_BOX_TEMPLATE"
 
 export const GET_SCHEMA = "GET_SCHEMA"
 export const CREATE_SCHEMA = "CREATE_SCHEMA"

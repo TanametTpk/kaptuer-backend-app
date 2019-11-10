@@ -6,17 +6,19 @@ export const getApplication = () => async dispatch => {
 
   let res = await API.app.getApplication();
   if (!res) return
-
+  
   dispatch({
     type: GET_APPLICATION,
     payload: res.data
   })
 
+  return res.data
+
 }
 
-export const createApplication = (name) => async dispatch => {
+export const createApplication = (app) => async dispatch => {
 
-  let res = await API.app.createApplication(creatable.Application(name))
+  let res = await API.app.createApplication(creatable.Application(app))
   if (!res) return
 
   dispatch({

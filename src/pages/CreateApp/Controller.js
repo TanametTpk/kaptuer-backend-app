@@ -31,7 +31,7 @@ const Controller = (props) => {
         if (step === 1) return <CreateApp onNext={onNext} />
         if (step === 2) return <SetAppName onNext={onNext} onBack={onBack} />
         else {
-
+            
             // create app
             props.createApplication(app).then(() => {
                 history.push("/")

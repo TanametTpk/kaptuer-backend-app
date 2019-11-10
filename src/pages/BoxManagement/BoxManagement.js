@@ -7,20 +7,21 @@ import BoxControl from './BoxControl'
 
 function BoxManagement(props) {
   // const history = useHistory();
-  const appId = "test" // props.history.location.state.application.id
 
   useEffect(() => {
 
-    const fetchProject = async () => await props.getBox(appId) // TODO - change application id here
+    let appId = props.match.params.appId
+    
+    const fetchProject = async () => await props.getBoxes(appId) // TODO - change application id here
 
     fetchProject()
 
-  })
+  },[])
 
   return (
     <div style={{margin:"20px 20% 0" }}>
 
-      <BoxControl title="Channels" data={props.box.items} />
+      {/* <BoxControl title="Channels" data={props.box.items} /> */}
 
       <BoxControl title="Boxes" data={props.box.items} />
 

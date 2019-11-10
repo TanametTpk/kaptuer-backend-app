@@ -1,4 +1,4 @@
-import { GET_BOX, CREATE_BOX, DELETE_BOX } from '../types'
+import { GET_BOX, CREATE_BOX, DELETE_BOX, GET_BOX_TEMPLATE } from '../types'
 
 const initState = {
     items: [],
@@ -20,6 +20,13 @@ export default function (state = initState, action) {
             return {
                 ...state,
                 items: action.payload,
+            }
+
+        case GET_BOX_TEMPLATE:
+
+            return {
+                ...state,
+                templates: action.payload,
             }
 
         case DELETE_BOX:

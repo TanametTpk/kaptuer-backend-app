@@ -58,15 +58,17 @@ const Container = styled.div`
 
 `
 
-const AppThumnail = ({index=0, name, onClick , category}) => {
+const AppThumnail = ({index=0, onClick , onDelete, app}) => {
 
   const [ isMoreHover, setMoreHover ] = useState(false)
   const [ anchor, open, close ] = useAnchorElement()
   let icons = Other
+  let category = app.type || "Other"
+  let name = app.name 
 
   const popupHandler = (action) => {
 
-    if (action === "Delete") console.log("Delete");
+    if (action === "Delete") onDelete(app);
 
   }
 
@@ -79,7 +81,7 @@ const AppThumnail = ({index=0, name, onClick , category}) => {
 
   return (
     <Container>
-      <App onClick={() => {onClick("set id here")}}>
+      <App onClick={() => {onClick(app)}}>
         <Thumnail variant={themeColor[index % themeColor.length]} className="shadow-sm">
           <img src={getImage()} style={{height:"60%",width:"60%"}} alt={name}/>
         </Thumnail>
