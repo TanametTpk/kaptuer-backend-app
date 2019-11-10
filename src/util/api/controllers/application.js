@@ -20,27 +20,48 @@ const deleteApplication = async (applicationId , errorHandler) => {
     return await axios.delete(APP + `/application/${applicationId}`).catch(executeHandler(errorHandler))
 }
 
-const createProject = async ( payload , errorHandler ) => {
+const createBox = async ( payload , errorHandler ) => {
 
-    return await axios.post(APP + "/project" , payload).catch(executeHandler(errorHandler))
-
-}
-
-const getProject = async (applicationId , errorHandler) => {
-
-    return await axios.get(APP + `/project?application=${applicationId}`).catch(executeHandler(errorHandler))
+    return await axios.post(APP + "/boxes" , payload).catch(executeHandler(errorHandler))
 
 }
 
-const deleteProject = async (projectId , errorHandler) => {
-    return await axios.delete(APP + `/project/${projectId}`).catch(executeHandler(errorHandler))
+const createBoxes = async ( payload , errorHandler ) => {
+
+    return await axios.post(APP + "/boxes/clone" , payload).catch(executeHandler(errorHandler))
+
+}
+
+const getBox = async (boxId , errorHandler) => {
+
+    return await axios.get(APP + `/boxes/${boxId}`).catch(executeHandler(errorHandler))
+
+}
+
+const getBoxes = async (applicationId , errorHandler) => {
+
+    return await axios.get(APP + `/boxes?application=${applicationId}`).catch(executeHandler(errorHandler))
+
+}
+
+const getBoxTemplate = async (errorHandler) => {
+
+    return await axios.get(APP + `/boxes?type=template`).catch(executeHandler(errorHandler))
+
+}
+
+const deleteBox = async (boxId , errorHandler) => {
+    return await axios.delete(APP + `/boxes/${boxId}`).catch(executeHandler(errorHandler))
 }
 
 export default {
     createApplication,
     getApplication,
     deleteApplication,
-    createProject,
-    getProject,
-    deleteProject
+    createBox,
+    getBox,
+    getBoxes,
+    deleteBox,
+    createBoxes,
+    getBoxTemplate
 }

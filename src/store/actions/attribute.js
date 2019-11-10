@@ -1,4 +1,4 @@
-import { GET_ATTRIBUTE , CREATE_ATTRIBUTE , DELETE_ATTRIBUTE } from '../types'
+import { GET_ATTRIBUTE , CREATE_ATTRIBUTE , DELETE_ATTRIBUTE, UPDATE_ATTRIBUTE } from '../types'
 import API from '../../util/api'
 
 export const getAttribute = (schemaId) => async dispatch => {
@@ -36,6 +36,20 @@ export const deleteAttribute = (id) => async dispatch => {
 
     dispatch({
         type: DELETE_ATTRIBUTE,
+        payload: res.data
+    })
+
+    return res.data
+
+}
+
+export const updateAttribute = (attribute) => async dispatch => {
+
+    let res = await API.generator.updateAttribute(attribute)
+    if (!res) return
+
+    dispatch({
+        type: UPDATE_ATTRIBUTE,
         payload: res.data
     })
 

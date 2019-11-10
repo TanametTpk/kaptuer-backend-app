@@ -22,9 +22,10 @@ export const addSchema = (schema) => dispatch => {
 
 }
 
-export const generate = (generator) => async dispatch => {
+export const generate = (box) => async dispatch => {
 
-    let res = await API.generator.generate(generator.result())
+    let res = await API.generator.generate(box)
+    if (!res) return
 
     dispatch({
         type: GENERATE_CODE

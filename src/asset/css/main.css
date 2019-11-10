@@ -34,8 +34,8 @@ a.button.primary:hover {
 a.button.border {
   background-color: none;
   border-width: 2px;
-  color: #3FBF9A;
-  border-color: #3FBF9A;
+  color: #f6f8f9;
+  border-color: #f6f8f9;
   border-style: solid;
 }
 
@@ -276,7 +276,7 @@ a.button.border {
   left: 0;
   height: 100vh;
   width: 100%;
-  background-color: #3FBF9A;
+  background-color: #f6f8f9;
   margin-top: 20px;
   display: block;
 }
@@ -827,7 +827,7 @@ a.button.border {
 }
 
 .project-list-container .project-list-header {
-  background-color: #3FBF9A;
+  background-color: #f6f8f9;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -956,7 +956,7 @@ a.button.border {
 }
 
 .schema-table thead tr {
-  background-color: #3FBF9A;
+  background-color: #f6f8f9;
   color: white;
   text-align: left;
   font-size: bold;
@@ -1010,8 +1010,12 @@ body {
   width: 100%;
 }
 
+html {
+  background-color: #f6f8f9;
+}
+
 #root {
-  background-color: #3FBF9A;
+  background-color: #f6f8f9;
   min-height: 100vh;
   height: 100%;
 }

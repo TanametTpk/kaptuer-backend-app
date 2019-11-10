@@ -1,7 +1,10 @@
-const Application = (name) => {
+const Application = (app) => {
+
+    let { name, type } = app
 
     return {
-        name
+        name,
+        type
     }
 
 }

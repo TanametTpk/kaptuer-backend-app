@@ -6,13 +6,13 @@ const GEN = API.CONTROLLER
 
 const generate = async (payload, errorHandler) => {
 
-    return await axios.post(GEN + "/generator/inplace", { projectID: payload._id }).catch(executeHandler(errorHandler))
+    return await axios.post(GEN + "/generator/inplace", { boxID: payload._id }).catch(executeHandler(errorHandler))
 
 }
 
 const getDb = async (projectID, errorHandler) => {
 
-    return await axios.get(GEN + `/databaseMeta?project=${projectID}`).catch(executeHandler(errorHandler))
+    return await axios.get(GEN + `/databaseMeta?box=${projectID}`).catch(executeHandler(errorHandler))
 
 }
 
@@ -46,6 +46,12 @@ const deleteAttribute = async (attrubuteID, errorHandler) => {
 
 }
 
+const updateAttribute = async (payload, errorHandler) => {
+
+    return await axios.put(GEN + `/attribute/${payload._id}`, payload).catch(executeHandler(errorHandler))
+
+}
+
 export default {
     generate,
     getDb,
@@ -54,4 +60,5 @@ export default {
     getAttribute,
     createAttribute,
     deleteAttribute,
+    updateAttribute
 }
