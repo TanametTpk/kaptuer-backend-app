@@ -78,7 +78,7 @@ const ApiSystem = ({...props}) => {
             return
         }
 
-        props.createAttribute(att).then(() => {
+        props.createAttribute({type:"string", ...att, databaseMeta: selectedSchema._id}).then(() => {
 
             
 
@@ -104,11 +104,26 @@ const ApiSystem = ({...props}) => {
             
 
         }).finally(() => {
-            setAtt({})
+            setEAtt({})
             setValidatedAtt(false)
-            closeAm()
+            closeEAm()
         })
 
+    }
+
+    const onDeleteAtt = () => {
+
+        setValidatedAtt(true)
+
+        props.deleteAttribute(eatt._id).then(() => {
+
+            
+
+        }).finally(() => {
+            setEAtt({})
+            setValidatedAtt(false)
+            closeEAm()
+        })
     }
 
     const onCreateSchema = () => {
@@ -176,7 +191,7 @@ const ApiSystem = ({...props}) => {
                     </MiniHeader>
                     <AttributeSection 
                         onClick={clickAtt}
-                        attributes={[{_id:"test", name:"fuck", option:"unique"}]}
+                        attributes={props.attributes.map((att) => { return {...att, option:"optional"} })}
                     />
                 </div>
                 :
@@ -232,6 +247,14 @@ const ApiSystem = ({...props}) => {
                 visible={eattModal}
                 onOk={onEditAtt}
                 onCancel={closeEAm}
+                footer={[
+                    <Button key="delete" type="danger" onClick={onDeleteAtt}>
+                        Delete
+                    </Button>,
+                    <Button key="submit" type="primary" onClick={onEditAtt}>
+                        Update attribute
+                    </Button>,
+                ]}
             >
                 <CreateAttForm onChange={(value)=>noWhiteSpaceName(value, setEAtt)} attribute={eatt} canUseName={canUseName} validated={validatedAtt} />
             </Modal>
