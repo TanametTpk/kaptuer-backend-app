@@ -9,6 +9,7 @@ import CreateSchemaForm from './components/CreateSchemaForm'
 import { connect } from 'react-redux'
 import { getSchema, deleteSchema, createSchema } from '../../../store/actions/schema'
 import { getAttribute, deleteAttribute, createAttribute, updateAttribute } from '../../../store/actions/attribute'
+import { useHistory } from 'react-router-dom'
 
 const MiniHeader = styled.div`
 
@@ -30,6 +31,7 @@ const ApiSystem = ({...props}) => {
     let [sche, setSche] = useState({})
     let [ eatt, setEAtt ] = useState({})
     let boxId = props.match.params.boxId
+    let history = useHistory()
 
     useEffect(() => {
 
@@ -66,7 +68,7 @@ const ApiSystem = ({...props}) => {
     }
 
     const canUseName = (name) => {
-        return Boolean(name.match(/_*[a-zA-Z0-9]+[a-zA-Z0-9_]*_*/g))
+        return Boolean((name || "").match(/_*[a-zA-Z0-9]+[a-zA-Z0-9_]*_*/g))
     }
 
     const onCreateAtt = () => {
@@ -134,7 +136,7 @@ const ApiSystem = ({...props}) => {
         if (!result){
             return
         }
-
+        
         props.createSchema({box:boxId ,...sche}).then(() => {
 
         }).finally(() => {
@@ -197,7 +199,14 @@ const ApiSystem = ({...props}) => {
                 :
                 <div>
                     <MiniHeader>
-                        <div className="fake-item" />
+                        <Button 
+                            style={{color:"#334D6E"}}
+                            type="link"
+                            size="large"
+                            onClick={() => history.goBack()}
+                        >
+                            back to boxes
+                        </Button>
                         <Button style={{
                                 background:"#109CF1" ,
                                 border:"none" ,
@@ -222,7 +231,7 @@ const ApiSystem = ({...props}) => {
                                 }}
                                 description={
                                 <span>
-                                    Customize <a href="#API">Description</a>
+                                    You don't have any Schema
                                 </span>
                                 }
                             >

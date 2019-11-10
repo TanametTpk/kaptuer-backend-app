@@ -73,7 +73,7 @@ const CreateBox = (props) => {
 
         // send to server to create boxes
         props.createBoxes(Object.values(selectedMap), props.app._id).then(() => {
-            history.push("/")
+            history.goBack()
         })
 
         return <Loader />

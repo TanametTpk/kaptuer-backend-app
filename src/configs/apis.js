@@ -1,4 +1,4 @@
-const SERVER_URL = process.env.SERVER_URL || "http://kaptuer.test:9007"
+const SERVER_URL = process.env.SERVER_URL || "https://api.backend.kaptuer.com"
 
 export default {
 

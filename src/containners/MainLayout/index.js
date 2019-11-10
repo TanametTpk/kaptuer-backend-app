@@ -7,6 +7,8 @@ import SideBar from './SideBar'
 import { useAnchorElement } from '../../util/hooks'
 import Menu from './Menu'
 import {useHistory} from 'react-router-dom'
+import { logOut } from '../../store/actions/user'
+import { connect } from 'react-redux'
 
 const btnColor = {
     display:"flex" ,
@@ -44,6 +46,12 @@ const MainLayout = ({ user, ...props}) => {
         if (e.key === "dashboard") history.push("/") 
     }
 
+    const onProfileClick = (e) => {
+        if (e === "Logout") {
+            props.logOut()
+        }
+    }
+
     return (
         <div>
             <Sidebar
@@ -74,7 +82,7 @@ const MainLayout = ({ user, ...props}) => {
             <Menu 
                 anchor={userPopOver}
                 close={userPopClose}
-                onClick={(e) => console.log(e)}
+                onClick={onProfileClick}
                 menus={[{name:"Logout"}]}
             />
 
@@ -82,4 +90,9 @@ const MainLayout = ({ user, ...props}) => {
     )
 }
 
-export default MainLayout
+const mapDispatchToProps = {
+    logOut
+}
+
+
+export default connect(null, mapDispatchToProps)(MainLayout)
