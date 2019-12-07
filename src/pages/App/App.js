@@ -32,10 +32,10 @@ function App(props) {
     return(<Loader />)
   }
 
-  // const logout = () => {
-  //   props.logOut()
-  //   logEvent("nav", "logout")
-  // }
+  const logout = () => {
+    props.logOut()
+    logEvent("nav", "logout")
+  }
 
   return (
       <Router>

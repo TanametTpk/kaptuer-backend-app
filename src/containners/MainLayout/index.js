@@ -44,6 +44,7 @@ const MainLayout = ({ user, ...props}) => {
 
     const onSideBarClick = (e) => {
         if (e.key === "dashboard") history.push("/") 
+        if (e.key === "noter") window.location.href = "https://noter.kaptuer.com"
     }
 
     const onProfileClick = (e) => {
