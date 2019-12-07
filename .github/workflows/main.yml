@@ -21,7 +21,7 @@ jobs:
       run: |
         git config --global user.email "tanamet.tpk@gmail.com"
         git config --global user.name "TanametTpk"
-        git remote set-url origin https://TanametTpk:${GITHUB_TOKEN}/TanametTpk/kaptuer-backend-app.git
+        git remote set-url origin https://${GITHUB_TOKEN}/TanametTpk/kaptuer-backend-app.git
         npm run deploy
       env:
-        GITHUB_TOKEN: ${{secrets.github_workflow}}
+        GITHUB_TOKEN: ${{ secrets.github_workflow }}
