@@ -24,4 +24,4 @@ jobs:
         git remote set-url origin https://tanamettpk:${GITHUB_TOKEN}@github.com/TanametTpk/kaptuer-backend-app.git
         npm run deploy
       env:
-        GITHUB_TOKEN: ${{secrets.github_workflow}}
+        GITHUB_TOKEN: ${{ secrets.github_workflow }}
