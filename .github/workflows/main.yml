@@ -17,11 +17,18 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Install Packages
       run: npm install
-    - name: Deploy to GH Pages
-      run: |
-        git config --global user.email "tanamet.tpk@gmail.com"
-        git config --global user.name "TanametTpk"
-        git remote set-url origin https://${GITHUB_TOKEN}/TanametTpk/kaptuer-backend-app.git
-        npm run deploy
-      env:
-        GITHUB_TOKEN: ${{ secrets.github_workflow }}
+    - name: Build and Deploy
+      uses: TanametTpk/kaptuer-backend-app@master
+      with:
+        ACCESS_TOKEN: ${{secrets.github_workflow}}
+        BASE_BRANCH: master # The branch the action should deploy from.
+        BRANCH: gh-pages # The branch the action should deploy to.
+        FOLDER: build # The folder the action should deploy.
+    # - name: Deploy to GH Pages
+    #   run: |
+    #     git config --global user.email "tanamet.tpk@gmail.com"
+    #     git config --global user.name "TanametTpk"
+    #     git remote set-url origin https://tanamettpk:${GITHUB_TOKEN}@github.com/TanametTpk/kaptuer-backend-app.git
+    #     npm run deploy
+    #   env:
+    #     GITHUB_TOKEN: ${{secrets.github_workflow}}
