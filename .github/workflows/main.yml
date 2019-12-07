@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install Packages
+      run: npm install
+    - name: Deploy to GH Pages
+      run: |
+        git config --global user.email "tanamet.tpk@gmail.com"
+        git config --global user.name "TanametTpk"
+        git remote set-url origin https://e5fc4566f9b7e9ce8464ff18515463e84cfcdaa8@github.com/TanametTpk/kaptuer-backend-app>.git
+        npm run deploy
