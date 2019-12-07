@@ -21,16 +21,16 @@ import '../../asset/css/customs.css'
 
 function App(props) {
 
-  useEffect(()=>{
-    initGA()
-    pageView()
-  })
+  // useEffect(()=>{
+  //   initGA()
+  //   pageView()
+  // })
 
-  if (!props.user.isLogin){
-    logEvent("appPage", "not login")
-    window.location.href = "https://kaptuer.com";
-    return(<Loader />)
-  }
+  // if (!props.user.isLogin){
+  //   logEvent("appPage", "not login")
+  //   window.location.href = "https://kaptuer.com";
+  //   return(<Loader />)
+  // }
 
   // const logout = () => {
   //   props.logOut()
